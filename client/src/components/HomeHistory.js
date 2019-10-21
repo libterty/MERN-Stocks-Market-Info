@@ -12,8 +12,6 @@ function HomeHistory() {
       .then(json => setHistory(json.history));
   }, []);
 
-  //   console.log('history', history)
-
   useEffect(() => {
     const ctx = document.getElementById('historyChart').getContext('2d');
     const Keys = Object.keys(history);

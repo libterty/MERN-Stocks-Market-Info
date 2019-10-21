@@ -77184,8 +77184,7 @@ function HomeHistory() {
     }).then(function (json) {
       return setHistory(json.history);
     });
-  }, []); //   console.log('history', history)
-
+  }, []);
   (0, _react.useEffect)(function () {
     var ctx = document.getElementById('historyChart').getContext('2d');
     var Keys = Object.keys(history);
@@ -77228,7 +77227,49 @@ function HomeHistory() {
 
 var _default = HomeHistory;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","chart.js":"../../node_modules/chart.js/dist/Chart.js"}],"components/HomeStock.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","chart.js":"../../node_modules/chart.js/dist/Chart.js"}],"components/HomeNews.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function HomeNews() {
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      articles = _useState2[0],
+      setArticles = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    fetch("https://newsapi.org/v2/everything?domains=wsj.com&apiKey=".concat("0724b4680bed44d0a54b940c0c5f1e88")).then(function (res) {
+      return res.json();
+    }).then(function (json) {
+      return console.log(json);
+    });
+  }, []);
+  return _react.default.createElement("div", {
+    className: "HomeNews"
+  }, _react.default.createElement("div", null, "News"));
+}
+
+var _default = HomeNews;
+exports.default = _default;
+},{"react":"../../node_modules/react/index.js"}],"components/HomeStock.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77241,6 +77282,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _reactstrap = require("reactstrap");
 
 var _HomeHistory = _interopRequireDefault(require("./HomeHistory"));
+
+var _HomeNews = _interopRequireDefault(require("./HomeNews"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -77277,38 +77320,12 @@ function HomeStock() {
     return _react.default.createElement(_reactstrap.Table, {
       key: t.symbol
     }, _react.default.createElement("tbody", null, _react.default.createElement("tr", null, _react.default.createElement("th", null, "Price"), _react.default.createElement("td", null, t.price)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Currency"), _react.default.createElement("td", null, t.currency)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Open"), _react.default.createElement("td", null, t.price_open)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "High"), _react.default.createElement("td", null, t.day_high)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Low"), _react.default.createElement("td", null, t.day_low)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Year High"), _react.default.createElement("td", null, t['52_week_high'])), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Year Low"), _react.default.createElement("td", null, t['52_week_high'])), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Day Change"), _react.default.createElement("td", null, t.day_change)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Change PCT"), _react.default.createElement("td", null, t.change_pct)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Close Yesterday"), _react.default.createElement("td", null, t.close_yesterday)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Market Cap"), _react.default.createElement("td", null, t.market_cap)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Volume"), _react.default.createElement("td", null, t.volume)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Shares"), _react.default.createElement("td", null, t.shares))));
-  })), _react.default.createElement(_HomeHistory.default, null));
-} // {
-//     "symbol": "NDAQ",
-//     "name": "Nasdaq, Inc.",
-//     "currency": "USD",
-//     "price": "98.62",
-//     "price_open": "98.38",
-//     "day_high": "99.05",
-//     "day_low": "98.07",
-//     "52_week_high": "105.26",
-//     "52_week_low": "75.49",
-//     "day_change": "0.29",
-//     "change_pct": "0.29",
-//     "close_yesterday": "98.33",
-//     "market_cap": "16241530880",
-//     "volume": "664894",
-//     "volume_avg": "703650",
-//     "shares": "164688000",
-//     "stock_exchange_long": "NASDAQ Stock Exchange",
-//     "stock_exchange_short": "NASDAQ",
-//     "timezone": "EDT",
-//     "timezone_name": "America/New_York",
-//     "gmt_offset": "-14400",
-//     "last_trade_time": "2019-10-18 16:00:01",
-//     "pe": "30.58",
-//     "eps": "3.23"
-//   }
-
+  })), _react.default.createElement(_HomeHistory.default, null), _react.default.createElement("hr", null), _react.default.createElement(_HomeNews.default, null));
+}
 
 var _default = HomeStock;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./HomeHistory":"components/HomeHistory.js"}],"components/App.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./HomeHistory":"components/HomeHistory.js","./HomeNews":"components/HomeNews.js"}],"components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77546,7 +77563,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55522" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51294" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'reactstrap';
 import HomeHistory from './HomeHistory';
+import HomeNews from './HomeNews';
 
 function HomeStock() {
   const [item, setItem] = useState([]);
@@ -79,35 +80,10 @@ function HomeStock() {
         })}
       </div>
       <HomeHistory />
+      <hr />
+      <HomeNews />
     </div>
   );
 }
-
-// {
-//     "symbol": "NDAQ",
-//     "name": "Nasdaq, Inc.",
-//     "currency": "USD",
-//     "price": "98.62",
-//     "price_open": "98.38",
-//     "day_high": "99.05",
-//     "day_low": "98.07",
-//     "52_week_high": "105.26",
-//     "52_week_low": "75.49",
-//     "day_change": "0.29",
-//     "change_pct": "0.29",
-//     "close_yesterday": "98.33",
-//     "market_cap": "16241530880",
-//     "volume": "664894",
-//     "volume_avg": "703650",
-//     "shares": "164688000",
-//     "stock_exchange_long": "NASDAQ Stock Exchange",
-//     "stock_exchange_short": "NASDAQ",
-//     "timezone": "EDT",
-//     "timezone_name": "America/New_York",
-//     "gmt_offset": "-14400",
-//     "last_trade_time": "2019-10-18 16:00:01",
-//     "pe": "30.58",
-//     "eps": "3.23"
-//   }
 
 export default HomeStock;
