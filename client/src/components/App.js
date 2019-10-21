@@ -6,8 +6,14 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button
 } from 'reactstrap';
+import HomeStock from './HomeStock';
 
 function App() {
   const [stocks, setStocks] = useState([]);
@@ -23,25 +29,49 @@ function App() {
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
-  console.log('stocks', stocks);
-
   return (
     <div className="App">
       <Navbar color="faded" light>
         <NavbarBrand href="/" className="mr-auto" />
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
-          <Nav navbar>
+          <Form>
+            <FormGroup>
+              <Label for="stock">
+                <i className="far fa-paper-plane">Stock Code</i>
+              </Label>
+              <Input
+                type="text"
+                name="stock"
+                id="stock"
+                placeholder="Place ur stock code"
+              />
+            </FormGroup>
+            <Button
+              type="button"
+              size="sm"
+              color="danger"
+              className="stock-submit"
+            >
+              Submit
+            </Button>
+          </Form>
+          <Nav navbar className="sideNav-content">
+            <h6>Your stock lists</h6>
             {stocks.map(stock => {
               return (
                 <NavItem className="main" key={stock._id}>
-                  <NavLink href="#!">{stock.name}</NavLink>
+                  <i className="fas fa-minus-circle" id={stock._id} />
+                  <NavLink href="#!" className="stock-item">
+                    {stock.name}
+                  </NavLink>
                 </NavItem>
               );
             })}
           </Nav>
         </Collapse>
       </Navbar>
+      <HomeStock />
     </div>
   );
 }

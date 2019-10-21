@@ -6,12 +6,23 @@ html {
 }
 
 body {
-    margin: 5%;
+    width: 100%;
+    height: 100%;
     text-align: center;
     font-family: 'Roboto Condensed', sans-serif;
     background-color: #ffffff;
     color: #000000;
     word-wrap: break-word;
+}
+
+.App {
+    width: 100%;
+    height: 100%;
+    /* margin: 5%; */
+}
+
+.navbar {
+    background-color: #444;
 }
 
 .navbar-collapse {
@@ -23,6 +34,7 @@ body {
     padding-bottom: 15px;
     width: 100%;
 }
+
 .navbar-collapse.collapsing {
     height: auto;
     -webkit-transition: right 0.3s ease;
@@ -31,13 +43,35 @@ body {
     transition: right 0.3s ease;
     right: -100%;
 }
+
 .navbar-collapse.show {
     right: 0;
     -webkit-transition: right 0.3s ease-in;
     -o-transition: right 0.3s ease-in;
     -moz-transition: right 0.3s ease-in;
     transition: right 0.3s ease-in;
-    width: 25%;
+    width: 10%;
     height: 100vh;
     background-color: #444;
+}
+
+label {
+    float: left;
+}
+
+.stock-submit {
+    float: right;
+}
+
+.sideNav-content {
+    padding-top: 3rem;
+}
+
+.fas.fa-minus-circle,
+.stock-item {
+    display: inline-block;
+}
+
+.stock-item {
+    padding-left: 1rem !important;
 }

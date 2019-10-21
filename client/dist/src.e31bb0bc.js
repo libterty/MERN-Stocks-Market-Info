@@ -57856,7 +57856,50 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Container":"../../node_modules/reactstrap/es/Container.js","./Row":"../../node_modules/reactstrap/es/Row.js","./Col":"../../node_modules/reactstrap/es/Col.js","./Navbar":"../../node_modules/reactstrap/es/Navbar.js","./NavbarBrand":"../../node_modules/reactstrap/es/NavbarBrand.js","./NavbarToggler":"../../node_modules/reactstrap/es/NavbarToggler.js","./Nav":"../../node_modules/reactstrap/es/Nav.js","./NavItem":"../../node_modules/reactstrap/es/NavItem.js","./NavLink":"../../node_modules/reactstrap/es/NavLink.js","./Breadcrumb":"../../node_modules/reactstrap/es/Breadcrumb.js","./BreadcrumbItem":"../../node_modules/reactstrap/es/BreadcrumbItem.js","./Button":"../../node_modules/reactstrap/es/Button.js","./ButtonDropdown":"../../node_modules/reactstrap/es/ButtonDropdown.js","./ButtonGroup":"../../node_modules/reactstrap/es/ButtonGroup.js","./ButtonToolbar":"../../node_modules/reactstrap/es/ButtonToolbar.js","./Dropdown":"../../node_modules/reactstrap/es/Dropdown.js","./DropdownItem":"../../node_modules/reactstrap/es/DropdownItem.js","./DropdownMenu":"../../node_modules/reactstrap/es/DropdownMenu.js","./DropdownToggle":"../../node_modules/reactstrap/es/DropdownToggle.js","./Fade":"../../node_modules/reactstrap/es/Fade.js","./Badge":"../../node_modules/reactstrap/es/Badge.js","./Card":"../../node_modules/reactstrap/es/Card.js","./CardGroup":"../../node_modules/reactstrap/es/CardGroup.js","./CardDeck":"../../node_modules/reactstrap/es/CardDeck.js","./CardColumns":"../../node_modules/reactstrap/es/CardColumns.js","./CardBody":"../../node_modules/reactstrap/es/CardBody.js","./CardLink":"../../node_modules/reactstrap/es/CardLink.js","./CardFooter":"../../node_modules/reactstrap/es/CardFooter.js","./CardHeader":"../../node_modules/reactstrap/es/CardHeader.js","./CardImg":"../../node_modules/reactstrap/es/CardImg.js","./CardImgOverlay":"../../node_modules/reactstrap/es/CardImgOverlay.js","./Carousel":"../../node_modules/reactstrap/es/Carousel.js","./UncontrolledCarousel":"../../node_modules/reactstrap/es/UncontrolledCarousel.js","./CarouselControl":"../../node_modules/reactstrap/es/CarouselControl.js","./CarouselItem":"../../node_modules/reactstrap/es/CarouselItem.js","./CarouselIndicators":"../../node_modules/reactstrap/es/CarouselIndicators.js","./CarouselCaption":"../../node_modules/reactstrap/es/CarouselCaption.js","./CardSubtitle":"../../node_modules/reactstrap/es/CardSubtitle.js","./CardText":"../../node_modules/reactstrap/es/CardText.js","./CardTitle":"../../node_modules/reactstrap/es/CardTitle.js","./CustomFileInput":"../../node_modules/reactstrap/es/CustomFileInput.js","./CustomInput":"../../node_modules/reactstrap/es/CustomInput.js","./PopperContent":"../../node_modules/reactstrap/es/PopperContent.js","./PopperTargetHelper":"../../node_modules/reactstrap/es/PopperTargetHelper.js","./Popover":"../../node_modules/reactstrap/es/Popover.js","./UncontrolledPopover":"../../node_modules/reactstrap/es/UncontrolledPopover.js","./PopoverHeader":"../../node_modules/reactstrap/es/PopoverHeader.js","./PopoverBody":"../../node_modules/reactstrap/es/PopoverBody.js","./Progress":"../../node_modules/reactstrap/es/Progress.js","./Modal":"../../node_modules/reactstrap/es/Modal.js","./ModalHeader":"../../node_modules/reactstrap/es/ModalHeader.js","./ModalBody":"../../node_modules/reactstrap/es/ModalBody.js","./ModalFooter":"../../node_modules/reactstrap/es/ModalFooter.js","./Tooltip":"../../node_modules/reactstrap/es/Tooltip.js","./Table":"../../node_modules/reactstrap/es/Table.js","./ListGroup":"../../node_modules/reactstrap/es/ListGroup.js","./Form":"../../node_modules/reactstrap/es/Form.js","./FormFeedback":"../../node_modules/reactstrap/es/FormFeedback.js","./FormGroup":"../../node_modules/reactstrap/es/FormGroup.js","./FormText":"../../node_modules/reactstrap/es/FormText.js","./Input":"../../node_modules/reactstrap/es/Input.js","./InputGroup":"../../node_modules/reactstrap/es/InputGroup.js","./InputGroupAddon":"../../node_modules/reactstrap/es/InputGroupAddon.js","./InputGroupButtonDropdown":"../../node_modules/reactstrap/es/InputGroupButtonDropdown.js","./InputGroupText":"../../node_modules/reactstrap/es/InputGroupText.js","./Label":"../../node_modules/reactstrap/es/Label.js","./Media":"../../node_modules/reactstrap/es/Media.js","./Pagination":"../../node_modules/reactstrap/es/Pagination.js","./PaginationItem":"../../node_modules/reactstrap/es/PaginationItem.js","./PaginationLink":"../../node_modules/reactstrap/es/PaginationLink.js","./TabContent":"../../node_modules/reactstrap/es/TabContent.js","./TabPane":"../../node_modules/reactstrap/es/TabPane.js","./Jumbotron":"../../node_modules/reactstrap/es/Jumbotron.js","./Alert":"../../node_modules/reactstrap/es/Alert.js","./Toast":"../../node_modules/reactstrap/es/Toast.js","./ToastBody":"../../node_modules/reactstrap/es/ToastBody.js","./ToastHeader":"../../node_modules/reactstrap/es/ToastHeader.js","./Collapse":"../../node_modules/reactstrap/es/Collapse.js","./ListGroupItem":"../../node_modules/reactstrap/es/ListGroupItem.js","./ListGroupItemHeading":"../../node_modules/reactstrap/es/ListGroupItemHeading.js","./ListGroupItemText":"../../node_modules/reactstrap/es/ListGroupItemText.js","./UncontrolledAlert":"../../node_modules/reactstrap/es/UncontrolledAlert.js","./UncontrolledButtonDropdown":"../../node_modules/reactstrap/es/UncontrolledButtonDropdown.js","./UncontrolledCollapse":"../../node_modules/reactstrap/es/UncontrolledCollapse.js","./UncontrolledDropdown":"../../node_modules/reactstrap/es/UncontrolledDropdown.js","./UncontrolledTooltip":"../../node_modules/reactstrap/es/UncontrolledTooltip.js","./Spinner":"../../node_modules/reactstrap/es/Spinner.js","./utils":"../../node_modules/reactstrap/es/utils.js"}],"components/App.js":[function(require,module,exports) {
+},{"./Container":"../../node_modules/reactstrap/es/Container.js","./Row":"../../node_modules/reactstrap/es/Row.js","./Col":"../../node_modules/reactstrap/es/Col.js","./Navbar":"../../node_modules/reactstrap/es/Navbar.js","./NavbarBrand":"../../node_modules/reactstrap/es/NavbarBrand.js","./NavbarToggler":"../../node_modules/reactstrap/es/NavbarToggler.js","./Nav":"../../node_modules/reactstrap/es/Nav.js","./NavItem":"../../node_modules/reactstrap/es/NavItem.js","./NavLink":"../../node_modules/reactstrap/es/NavLink.js","./Breadcrumb":"../../node_modules/reactstrap/es/Breadcrumb.js","./BreadcrumbItem":"../../node_modules/reactstrap/es/BreadcrumbItem.js","./Button":"../../node_modules/reactstrap/es/Button.js","./ButtonDropdown":"../../node_modules/reactstrap/es/ButtonDropdown.js","./ButtonGroup":"../../node_modules/reactstrap/es/ButtonGroup.js","./ButtonToolbar":"../../node_modules/reactstrap/es/ButtonToolbar.js","./Dropdown":"../../node_modules/reactstrap/es/Dropdown.js","./DropdownItem":"../../node_modules/reactstrap/es/DropdownItem.js","./DropdownMenu":"../../node_modules/reactstrap/es/DropdownMenu.js","./DropdownToggle":"../../node_modules/reactstrap/es/DropdownToggle.js","./Fade":"../../node_modules/reactstrap/es/Fade.js","./Badge":"../../node_modules/reactstrap/es/Badge.js","./Card":"../../node_modules/reactstrap/es/Card.js","./CardGroup":"../../node_modules/reactstrap/es/CardGroup.js","./CardDeck":"../../node_modules/reactstrap/es/CardDeck.js","./CardColumns":"../../node_modules/reactstrap/es/CardColumns.js","./CardBody":"../../node_modules/reactstrap/es/CardBody.js","./CardLink":"../../node_modules/reactstrap/es/CardLink.js","./CardFooter":"../../node_modules/reactstrap/es/CardFooter.js","./CardHeader":"../../node_modules/reactstrap/es/CardHeader.js","./CardImg":"../../node_modules/reactstrap/es/CardImg.js","./CardImgOverlay":"../../node_modules/reactstrap/es/CardImgOverlay.js","./Carousel":"../../node_modules/reactstrap/es/Carousel.js","./UncontrolledCarousel":"../../node_modules/reactstrap/es/UncontrolledCarousel.js","./CarouselControl":"../../node_modules/reactstrap/es/CarouselControl.js","./CarouselItem":"../../node_modules/reactstrap/es/CarouselItem.js","./CarouselIndicators":"../../node_modules/reactstrap/es/CarouselIndicators.js","./CarouselCaption":"../../node_modules/reactstrap/es/CarouselCaption.js","./CardSubtitle":"../../node_modules/reactstrap/es/CardSubtitle.js","./CardText":"../../node_modules/reactstrap/es/CardText.js","./CardTitle":"../../node_modules/reactstrap/es/CardTitle.js","./CustomFileInput":"../../node_modules/reactstrap/es/CustomFileInput.js","./CustomInput":"../../node_modules/reactstrap/es/CustomInput.js","./PopperContent":"../../node_modules/reactstrap/es/PopperContent.js","./PopperTargetHelper":"../../node_modules/reactstrap/es/PopperTargetHelper.js","./Popover":"../../node_modules/reactstrap/es/Popover.js","./UncontrolledPopover":"../../node_modules/reactstrap/es/UncontrolledPopover.js","./PopoverHeader":"../../node_modules/reactstrap/es/PopoverHeader.js","./PopoverBody":"../../node_modules/reactstrap/es/PopoverBody.js","./Progress":"../../node_modules/reactstrap/es/Progress.js","./Modal":"../../node_modules/reactstrap/es/Modal.js","./ModalHeader":"../../node_modules/reactstrap/es/ModalHeader.js","./ModalBody":"../../node_modules/reactstrap/es/ModalBody.js","./ModalFooter":"../../node_modules/reactstrap/es/ModalFooter.js","./Tooltip":"../../node_modules/reactstrap/es/Tooltip.js","./Table":"../../node_modules/reactstrap/es/Table.js","./ListGroup":"../../node_modules/reactstrap/es/ListGroup.js","./Form":"../../node_modules/reactstrap/es/Form.js","./FormFeedback":"../../node_modules/reactstrap/es/FormFeedback.js","./FormGroup":"../../node_modules/reactstrap/es/FormGroup.js","./FormText":"../../node_modules/reactstrap/es/FormText.js","./Input":"../../node_modules/reactstrap/es/Input.js","./InputGroup":"../../node_modules/reactstrap/es/InputGroup.js","./InputGroupAddon":"../../node_modules/reactstrap/es/InputGroupAddon.js","./InputGroupButtonDropdown":"../../node_modules/reactstrap/es/InputGroupButtonDropdown.js","./InputGroupText":"../../node_modules/reactstrap/es/InputGroupText.js","./Label":"../../node_modules/reactstrap/es/Label.js","./Media":"../../node_modules/reactstrap/es/Media.js","./Pagination":"../../node_modules/reactstrap/es/Pagination.js","./PaginationItem":"../../node_modules/reactstrap/es/PaginationItem.js","./PaginationLink":"../../node_modules/reactstrap/es/PaginationLink.js","./TabContent":"../../node_modules/reactstrap/es/TabContent.js","./TabPane":"../../node_modules/reactstrap/es/TabPane.js","./Jumbotron":"../../node_modules/reactstrap/es/Jumbotron.js","./Alert":"../../node_modules/reactstrap/es/Alert.js","./Toast":"../../node_modules/reactstrap/es/Toast.js","./ToastBody":"../../node_modules/reactstrap/es/ToastBody.js","./ToastHeader":"../../node_modules/reactstrap/es/ToastHeader.js","./Collapse":"../../node_modules/reactstrap/es/Collapse.js","./ListGroupItem":"../../node_modules/reactstrap/es/ListGroupItem.js","./ListGroupItemHeading":"../../node_modules/reactstrap/es/ListGroupItemHeading.js","./ListGroupItemText":"../../node_modules/reactstrap/es/ListGroupItemText.js","./UncontrolledAlert":"../../node_modules/reactstrap/es/UncontrolledAlert.js","./UncontrolledButtonDropdown":"../../node_modules/reactstrap/es/UncontrolledButtonDropdown.js","./UncontrolledCollapse":"../../node_modules/reactstrap/es/UncontrolledCollapse.js","./UncontrolledDropdown":"../../node_modules/reactstrap/es/UncontrolledDropdown.js","./UncontrolledTooltip":"../../node_modules/reactstrap/es/UncontrolledTooltip.js","./Spinner":"../../node_modules/reactstrap/es/Spinner.js","./utils":"../../node_modules/reactstrap/es/utils.js"}],"components/HomeHistory.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function HomeHistory() {
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      history = _useState2[0],
+      setHistory = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    fetch("https://api.worldtradingdata.com/api/v1/history?symbol=NDAQ&api_token=".concat("GtGyE3sXB7lFVgz1oXV8NLMMVUaF1KlzTPNCwMi2ISijITtJeArQEUCfoK92")).then(function (res) {
+      return res.json();
+    }).then(function (json) {
+      return setHistory(json.history);
+    });
+  }, []);
+  console.log('history:', history);
+  return _react.default.createElement("div", {
+    className: "HomeHistory"
+  }, _react.default.createElement("div", null, "NASQ HISTORY"));
+}
+
+var _default = HomeHistory;
+exports.default = _default;
+},{"react":"../../node_modules/react/index.js"}],"components/HomeStock.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57867,6 +57910,90 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactstrap = require("reactstrap");
+
+var _HomeHistory = _interopRequireDefault(require("./HomeHistory"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function HomeStock() {
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      item = _useState2[0],
+      setItem = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    fetch("https://api.worldtradingdata.com/api/v1/stock?symbol=NDAQ&api_token=".concat("GtGyE3sXB7lFVgz1oXV8NLMMVUaF1KlzTPNCwMi2ISijITtJeArQEUCfoK92")).then(function (res) {
+      return res.json();
+    }).then(function (json) {
+      return setItem(json.data);
+    });
+  }, []);
+  return _react.default.createElement("div", {
+    className: "HomeStock row"
+  }, _react.default.createElement("div", {
+    className: "col-md-4"
+  }, _react.default.createElement("h2", null, "Real Time Quote"), item.map(function (t) {
+    return _react.default.createElement(_reactstrap.Table, {
+      key: t.symbol
+    }, _react.default.createElement("tbody", null, _react.default.createElement("tr", null, _react.default.createElement("th", null, "Price"), _react.default.createElement("td", null, t.price)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Currency"), _react.default.createElement("td", null, t.currency)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Open"), _react.default.createElement("td", null, t.price_open)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "High"), _react.default.createElement("td", null, t.day_high)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Low"), _react.default.createElement("td", null, t.day_low)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Year High"), _react.default.createElement("td", null, t['52_week_high'])), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Year Low"), _react.default.createElement("td", null, t['52_week_high'])), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Day Change"), _react.default.createElement("td", null, t.day_change)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Change PCT"), _react.default.createElement("td", null, t.change_pct)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Close Yesterday"), _react.default.createElement("td", null, t.close_yesterday)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Market Cap"), _react.default.createElement("td", null, t.market_cap)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Volume"), _react.default.createElement("td", null, t.volume)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Shares"), _react.default.createElement("td", null, t.shares))));
+  })), _react.default.createElement(_HomeHistory.default, null));
+} // {
+//     "symbol": "NDAQ",
+//     "name": "Nasdaq, Inc.",
+//     "currency": "USD",
+//     "price": "98.62",
+//     "price_open": "98.38",
+//     "day_high": "99.05",
+//     "day_low": "98.07",
+//     "52_week_high": "105.26",
+//     "52_week_low": "75.49",
+//     "day_change": "0.29",
+//     "change_pct": "0.29",
+//     "close_yesterday": "98.33",
+//     "market_cap": "16241530880",
+//     "volume": "664894",
+//     "volume_avg": "703650",
+//     "shares": "164688000",
+//     "stock_exchange_long": "NASDAQ Stock Exchange",
+//     "stock_exchange_short": "NASDAQ",
+//     "timezone": "EDT",
+//     "timezone_name": "America/New_York",
+//     "gmt_offset": "-14400",
+//     "last_trade_time": "2019-10-18 16:00:01",
+//     "pe": "30.58",
+//     "eps": "3.23"
+//   }
+
+
+var _default = HomeStock;
+exports.default = _default;
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./HomeHistory":"components/HomeHistory.js"}],"components/App.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactstrap = require("reactstrap");
+
+var _HomeStock = _interopRequireDefault(require("./HomeStock"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -57903,7 +58030,6 @@ function App() {
     return setCollapsed(!collapsed);
   };
 
-  console.log('stocks', stocks);
   return _react.default.createElement("div", {
     className: "App"
   }, _react.default.createElement(_reactstrap.Navbar, {
@@ -57918,21 +58044,40 @@ function App() {
   }), _react.default.createElement(_reactstrap.Collapse, {
     isOpen: !collapsed,
     navbar: true
-  }, _react.default.createElement(_reactstrap.Nav, {
-    navbar: true
-  }, stocks.map(function (stock) {
+  }, _react.default.createElement(_reactstrap.Form, null, _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
+    "for": "stock"
+  }, _react.default.createElement("i", {
+    className: "far fa-paper-plane"
+  }, "Stock Code")), _react.default.createElement(_reactstrap.Input, {
+    type: "text",
+    name: "stock",
+    id: "stock",
+    placeholder: "Place ur stock code"
+  })), _react.default.createElement(_reactstrap.Button, {
+    type: "button",
+    size: "sm",
+    color: "danger",
+    className: "stock-submit"
+  }, "Submit")), _react.default.createElement(_reactstrap.Nav, {
+    navbar: true,
+    className: "sideNav-content"
+  }, _react.default.createElement("h6", null, "Your stock lists"), stocks.map(function (stock) {
     return _react.default.createElement(_reactstrap.NavItem, {
       className: "main",
       key: stock._id
-    }, _react.default.createElement(_reactstrap.NavLink, {
-      href: "#!"
+    }, _react.default.createElement("i", {
+      className: "fas fa-minus-circle",
+      id: stock._id
+    }), _react.default.createElement(_reactstrap.NavLink, {
+      href: "#!",
+      className: "stock-item"
     }, stock.name));
-  })))));
+  })))), _react.default.createElement(_HomeStock.default, null));
 }
 
 var _default = App;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js"}],"history.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./HomeStock":"components/HomeStock.js"}],"history.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58072,7 +58217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59122" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56521" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

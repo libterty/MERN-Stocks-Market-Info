@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "npm run seed & npm run build-client & node index.js",
-        "dev": "npm run dev-client & nodemon index.js",
+        "dev": "npm run dev-client & cross-env ENV='development' nodemon index.js",
         "lint": "eslint --format table --fix .",
         "seed": "node models/seeds/index.js",
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,6 +19,7 @@
     "license": "ISC",
     "devDependencies": {
         "babel-eslint": "^10.0.3",
+        "cross-env": "^6.0.3",
         "eslint": "^6.5.1",
         "eslint-config-airbnb": "^18.0.1",
         "eslint-config-prettier": "^6.4.0",
