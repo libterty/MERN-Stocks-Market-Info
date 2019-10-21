@@ -1,5 +1,9 @@
 {
     "results": [{
         "name": "TSLA"
+    }, {
+        "name": "AAPL"
+    }, {
+        "name": "GOOGL"
     }]
 }
