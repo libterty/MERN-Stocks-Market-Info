@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Economica|Roboto+Condensed');
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 5%;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #444;
+    color: #fff;
+    word-wrap: break-word;
+}
