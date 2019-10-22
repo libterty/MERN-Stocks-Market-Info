@@ -8,7 +8,7 @@
 - User can link to stock code data in each individual page
 
 - Home Page
-![image](https://github.com/libterty/Stocks-Market-Infomation-with-Chart/tree/master/client/src/assets/Home.png)
+![image](https://github.com/libterty/Stocks-Market-Infomation-with-Chart/blob/master/client/src/assets/Home.png)
 
 ## Project ongoing
 

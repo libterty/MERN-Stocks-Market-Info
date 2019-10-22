@@ -15,7 +15,8 @@ body {
     word-wrap: break-word;
 }
 
-.App {
+.App,
+.StockItem {
     width: 100%;
     height: 100%;
     /* margin: 5%; */
@@ -80,8 +81,21 @@ h6,
     display: inline-block;
 }
 
+.fas.fa-minus-circle {
+    display: inline-block;
+    top: 0.25rem;
+    margin-inline-start: 0.5rem;
+}
+
 .stock-item {
     padding-left: 1rem !important;
+}
+
+.create-item {
+    display: flex;
+    cursor: pointer;
+    line-height: 1.5;
+    border-bottom: 1px solid #ddd;
 }
 
 .HomeNews {
