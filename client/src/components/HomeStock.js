@@ -80,7 +80,7 @@ function HomeStock() {
         })}
       </div>
       <HomeHistory />
-      <hr />
+      <hr className="col-md-12" />
       <HomeNews />
     </div>
   );

@@ -6,10 +6,10 @@ function HomeHistory() {
 
   useEffect(() => {
     fetch(
-      `https://api.worldtradingdata.com/api/v1/history?symbol=NDAQ&api_token=${process.env.worldtrade_key}`
+      `https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=NDAQ&apikey=${process.env.aplha_ventage}&datatype=json`
     )
       .then(res => res.json())
-      .then(json => setHistory(json.history));
+      .then(json => setHistory(json['Weekly Adjusted Time Series']));
   }, []);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function HomeHistory() {
           {
             label: 'Nadsaq Index',
             data: Vals.map(val => {
-              return val.close;
+              return val['4. close'];
             }).reverse(),
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
@@ -64,7 +64,7 @@ function HomeHistory() {
 
   return (
     <div className="HomeHistory">
-      <div>NASQ HISTORY</div>
+      <div>NADSQ HISTORY</div>
       <canvas id="historyChart" width="1600" height="800" />
     </div>
   );

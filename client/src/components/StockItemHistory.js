@@ -25,7 +25,7 @@ function StockItemHistory() {
         }).reverse(),
         datasets: [
           {
-            label: 'Nadsaq Index',
+            label: 'History Index Table',
             data: Vals.map(val => {
               return val['4. close'];
             }).reverse(),

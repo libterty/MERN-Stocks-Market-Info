@@ -77381,10 +77381,10 @@ function HomeHistory() {
       setHistory = _useState2[1];
 
   (0, _react.useEffect)(function () {
-    fetch("https://api.worldtradingdata.com/api/v1/history?symbol=NDAQ&api_token=".concat("GtGyE3sXB7lFVgz1oXV8NLMMVUaF1KlzTPNCwMi2ISijITtJeArQEUCfoK92")).then(function (res) {
+    fetch("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=NDAQ&apikey=".concat("QYR46PG0LPZALS06", "&datatype=json")).then(function (res) {
       return res.json();
     }).then(function (json) {
-      return setHistory(json.history);
+      return setHistory(json['Weekly Adjusted Time Series']);
     });
   }, []);
   (0, _react.useEffect)(function () {
@@ -77400,7 +77400,7 @@ function HomeHistory() {
         datasets: [{
           label: 'Nadsaq Index',
           data: Vals.map(function (val) {
-            return val.close;
+            return val['4. close'];
           }).reverse(),
           backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
           borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
@@ -77420,7 +77420,7 @@ function HomeHistory() {
   });
   return _react.default.createElement("div", {
     className: "HomeHistory"
-  }, _react.default.createElement("div", null, "NASQ HISTORY"), _react.default.createElement("canvas", {
+  }, _react.default.createElement("div", null, "NADSQ HISTORY"), _react.default.createElement("canvas", {
     id: "historyChart",
     width: "1600",
     height: "800"
@@ -77460,18 +77460,19 @@ function HomeNews() {
       setArticles = _useState2[1];
 
   (0, _react.useEffect)(function () {
-    fetch("https://newsapi.org/v2/everything?domains=wsj.com&apiKey=".concat("0724b4680bed44d0a54b940c0c5f1e88")).then(function (res) {
+    var q = "".concat(new Date().getFullYear(), "-").concat(new Date().getMonth() + 1, "-").concat(new Date().getDate());
+    fetch("https://newsapi.org/v2/everything?domains=wsj.com&from=".concat(q, "&to=").concat(q, "&sortBy=popularity&apiKey=").concat("0724b4680bed44d0a54b940c0c5f1e88")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setArticles(json.articles);
     });
   }, []);
   return _react.default.createElement("div", {
-    className: "HomeNews col-md-10 col-sm-10"
-  }, _react.default.createElement("h2", null, "Daily Finance News"), articles.map(function (article) {
+    className: "HomeNews col-md-12 col-sm-12"
+  }, _react.default.createElement("h2", null, "Daily Finance News"), articles.splice(0, 4).map(function (article) {
     return _react.default.createElement(_reactstrap.Card, {
       key: article.url,
-      className: "col-md-5 col-sm-10 mb-2 HomeNews-item"
+      className: "col-md-3 col-sm-2 mb-2 HomeNews-item"
     }, _react.default.createElement("a", {
       href: article.url
     }, _react.default.createElement(_reactstrap.CardImg, {
@@ -77479,7 +77480,7 @@ function HomeNews() {
       width: "25%",
       src: article.urlToImage,
       alt: article.source.name
-    }), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, null, article.title), _react.default.createElement(_reactstrap.CardSubtitle, null, article.author !== null ? article.author : 'No Author'), _react.default.createElement(_reactstrap.CardText, null, article.description))));
+    }), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, null, "Title: ", article.title), _react.default.createElement(_reactstrap.CardSubtitle, null, "Author:", article.author !== null ? article.author : 'No Author'), _react.default.createElement(_reactstrap.CardText, null, "Description: ", article.description))));
   }));
 }
 
@@ -77616,7 +77617,7 @@ function StockItemHistory() {
           return key;
         }).reverse(),
         datasets: [{
-          label: 'Nadsaq Index',
+          label: 'History Index Table',
           data: Vals.map(function (val) {
             return val['4. close'];
           }).reverse(),
@@ -77816,7 +77817,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59959" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61251" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
