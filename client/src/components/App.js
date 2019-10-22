@@ -14,6 +14,7 @@ import {
   Button
 } from 'reactstrap';
 import HomeStock from './HomeStock';
+import Headline from './Headline';
 
 function App() {
   const [stocks, setStocks] = useState([]);
@@ -32,7 +33,10 @@ function App() {
   return (
     <div className="App">
       <Navbar color="faded" light>
-        <NavbarBrand href="/" className="mr-auto" />
+        <NavbarBrand href="/" className="mr-auto">
+          <i className="fas fa-chart-line">Stock Markets</i>
+        </NavbarBrand>
+        <Headline />
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Form>

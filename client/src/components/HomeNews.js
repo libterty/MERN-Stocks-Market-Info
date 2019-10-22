@@ -24,7 +24,10 @@ function HomeNews() {
       <h2>Daily Finance News</h2>
       {articles.map(article => {
         return (
-          <Card key={article.url} className="col-md-5 col-sm-10 mb-2 HomeNews-item">
+          <Card
+            key={article.url}
+            className="col-md-5 col-sm-10 mb-2 HomeNews-item"
+          >
             <a href={article.url}>
               <CardImg
                 top
