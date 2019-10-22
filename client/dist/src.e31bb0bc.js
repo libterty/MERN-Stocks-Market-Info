@@ -77196,7 +77196,7 @@ function HomeHistory() {
           return key;
         }).reverse(),
         datasets: [{
-          label: '# of Votes',
+          label: 'Nadsaq Index',
           data: Vals.map(function (val) {
             return val.close;
           }).reverse(),
@@ -77237,6 +77237,8 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _reactstrap = require("reactstrap");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -77259,17 +77261,29 @@ function HomeNews() {
     fetch("https://newsapi.org/v2/everything?domains=wsj.com&apiKey=".concat("0724b4680bed44d0a54b940c0c5f1e88")).then(function (res) {
       return res.json();
     }).then(function (json) {
-      return console.log(json);
+      return setArticles(json.articles);
     });
   }, []);
   return _react.default.createElement("div", {
-    className: "HomeNews"
-  }, _react.default.createElement("div", null, "News"));
+    className: "HomeNews col-md-10 col-sm-10"
+  }, _react.default.createElement("h2", null, "Daily Finance News"), articles.map(function (article) {
+    return _react.default.createElement(_reactstrap.Card, {
+      key: article.url,
+      className: "col-md-5 col-sm-10 mb-2 HomeNews-item"
+    }, _react.default.createElement("a", {
+      href: article.url
+    }, _react.default.createElement(_reactstrap.CardImg, {
+      top: true,
+      width: "25%",
+      src: article.urlToImage,
+      alt: article.source.name
+    }), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, null, article.title), _react.default.createElement(_reactstrap.CardSubtitle, null, article.author !== null ? article.author : 'No Author'), _react.default.createElement(_reactstrap.CardText, null, article.description))));
+  }));
 }
 
 var _default = HomeNews;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js"}],"components/HomeStock.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js"}],"components/HomeStock.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77563,7 +77577,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51294" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54561" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

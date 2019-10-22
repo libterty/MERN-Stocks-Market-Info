@@ -24,7 +24,7 @@ function HomeHistory() {
         }).reverse(),
         datasets: [
           {
-            label: '# of Votes',
+            label: 'Nadsaq Index',
             data: Vals.map(val => {
               return val.close;
             }).reverse(),
