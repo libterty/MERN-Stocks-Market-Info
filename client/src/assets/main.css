@@ -54,7 +54,7 @@ body {
     width: 10%;
     height: 100vh;
     background-color: #444;
-    margin-top: 1.5rem;
+    /* margin-top: 1.5rem; */
 }
 
 label {

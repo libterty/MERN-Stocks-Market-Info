@@ -22,6 +22,7 @@ function NavHeader() {
   const [collapsed, setCollapsed] = useState(true);
   const [name, setName] = useState('');
   const [update, setUpdate] = useState({});
+  const [isShow, setIsShow] = useState(false);
 
   useEffect(() => {
     console.log('check get req');
@@ -40,28 +41,30 @@ function NavHeader() {
       body: JSON.stringify({ name })
     })
       .then(res => res.json())
-      .then(json => setUpdate(json));
+      .then(json => {
+        setUpdate(json);
+        setIsShow(true);
+        setName('');
+      });
   };
 
   const deleteStock = () => {
     fetch(`${document.location.origin}/api/v1/stocks/:id/delete`, {
-      method: 'POST',
-      redirect: 'follow',
-      location: '/',
+      method: 'DELETE',
       headers: {
-        Accept: 'application/json',
         'Content-type': 'application/json'
       }
-    })
-      .then(res => res.json())
-      .then(json => {
-        console.log(document.location);
-      });
+    });
   };
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   console.log('check global');
+
+  if (isShow) {
+    alert(update.message);
+    setIsShow(false);
+  }
 
   return (
     <Navbar color="faded" light>

@@ -57970,9 +57970,9 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactstrap = require("reactstrap");
 
-var _Headline = _interopRequireDefault(require("./Headline"));
-
 var _history = _interopRequireDefault(require("history"));
+
+var _Headline = _interopRequireDefault(require("./Headline"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -58011,6 +58011,11 @@ function NavHeader() {
       update = _useState8[0],
       setUpdate = _useState8[1];
 
+  var _useState9 = (0, _react.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      isShow = _useState10[0],
+      setIsShow = _useState10[1];
+
   (0, _react.useEffect)(function () {
     console.log('check get req');
     fetch("".concat(document.location.origin, "/api/v1/stocks")).then(function (res) {
@@ -58033,23 +58038,18 @@ function NavHeader() {
     }).then(function (res) {
       return res.json();
     }).then(function (json) {
-      return setUpdate(json);
+      setUpdate(json);
+      setIsShow(true);
+      setName('');
     });
   };
 
   var deleteStock = function deleteStock() {
     fetch("".concat(document.location.origin, "/api/v1/stocks/:id/delete"), {
-      method: 'POST',
-      redirect: 'follow',
-      location: '/',
+      method: 'DELETE',
       headers: {
-        Accept: 'application/json',
         'Content-type': 'application/json'
       }
-    }).then(function (res) {
-      return res.json();
-    }).then(function (json) {
-      console.log(document.location);
     });
   };
 
@@ -58058,6 +58058,12 @@ function NavHeader() {
   };
 
   console.log('check global');
+
+  if (isShow) {
+    alert(update.message);
+    setIsShow(false);
+  }
+
   return _react.default.createElement(_reactstrap.Navbar, {
     color: "faded",
     light: true
@@ -58122,7 +58128,7 @@ function NavHeader() {
 
 var _default = NavHeader;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./Headline":"components/Headline.js","history":"../../node_modules/history/esm/history.js"}],"../../node_modules/moment/moment.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","history":"../../node_modules/history/esm/history.js","./Headline":"components/Headline.js"}],"../../node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 //! moment.js
@@ -77472,10 +77478,13 @@ function HomeHistory() {
         }]
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              min: 0,
+              max: 100,
+              stepSize: 20
             }
           }]
         }
@@ -77483,7 +77492,7 @@ function HomeHistory() {
     });
   });
   return _react.default.createElement("div", {
-    className: "HomeHistory"
+    className: "HomeHistory col-md-7"
   }, _react.default.createElement("div", null, "NADSQ HISTORY"), _react.default.createElement("canvas", {
     id: "historyChart",
     width: "1600",
@@ -77883,7 +77892,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52677" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55720" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

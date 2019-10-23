@@ -2,11 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-const stocks = require('../models/stock');
+const Stocks = require('../models/stock');
 
 router.get('/stocks', async (req, res) => {
   try {
-    res.status(200).send(await stocks.find({}));
+    res.status(200).send(await Stocks.find({}));
   } catch (error) {
     console.log(error);
   }
@@ -14,21 +14,30 @@ router.get('/stocks', async (req, res) => {
 
 router.post('/stocks/newStock', async (req, res) => {
   try {
-    const newStock = new stocks({
+    const respond = await Stocks.findOne({ name: req.body.name });
+    if (respond !== null) {
+      return res
+        .status(400)
+        .json({ type: 'fail', message: 'Duplicate Stocks' });
+    }
+    const newStock = new Stocks({
       name: req.body.name
     });
-    res.status(201).send(await newStock.save());
+    await newStock.save();
+    return res
+      .status(201)
+      .json({ type: 'success', message: `Success Create ${req.body.name}` });
   } catch (error) {
-    console.log(error);
+    res.status(400).json({ type: 'fail', message: `${error.message}` });
   }
 });
 
 router.delete('/stocks/:id/delete', async (req, res) => {
   try {
-    await stocks.deleteOne({ _id: req.params.id });
-    res.status(201).redirect('/');
+    await Stocks.deleteOne({ _id: req.params.id });
+    return res.status(202).redirect('/');
   } catch (error) {
-    console.log(error);
+    return res.status(404).redirect('/');
   }
 });
 

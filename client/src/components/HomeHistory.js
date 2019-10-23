@@ -49,11 +49,14 @@ function HomeHistory() {
         ]
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [
             {
               ticks: {
-                beginAtZero: true
+                min: 0,
+                max: 100,
+                stepSize: 20
               }
             }
           ]
@@ -63,7 +66,7 @@ function HomeHistory() {
   });
 
   return (
-    <div className="HomeHistory">
+    <div className="HomeHistory col-md-7">
       <div>NADSQ HISTORY</div>
       <canvas id="historyChart" width="1600" height="800" />
     </div>

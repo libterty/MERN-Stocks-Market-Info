@@ -50,6 +50,7 @@ function StockItemHistory() {
         ]
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [
             {
