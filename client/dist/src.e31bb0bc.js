@@ -77480,7 +77480,7 @@ function HomeNews() {
       width: "25%",
       src: article.urlToImage,
       alt: article.source.name
-    }), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, null, "Title: ", article.title), _react.default.createElement(_reactstrap.CardSubtitle, null, "Author:", article.author !== null ? article.author : 'No Author'), _react.default.createElement(_reactstrap.CardText, null, "Description: ", article.description))));
+    }), _react.default.createElement(_reactstrap.CardBody, null, _react.default.createElement(_reactstrap.CardTitle, null, "Title: ", article.title), _react.default.createElement(_reactstrap.CardSubtitle, null, "Author:", article.author !== null ? article.author : 'No Author'))));
   }));
 }
 
@@ -77537,7 +77537,9 @@ function HomeStock() {
     return _react.default.createElement(_reactstrap.Table, {
       key: t.symbol
     }, _react.default.createElement("tbody", null, _react.default.createElement("tr", null, _react.default.createElement("th", null, "Price"), _react.default.createElement("td", null, t.price)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Currency"), _react.default.createElement("td", null, t.currency)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Open"), _react.default.createElement("td", null, t.price_open)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "High"), _react.default.createElement("td", null, t.day_high)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Low"), _react.default.createElement("td", null, t.day_low)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Year High"), _react.default.createElement("td", null, t['52_week_high'])), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Year Low"), _react.default.createElement("td", null, t['52_week_high'])), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Day Change"), _react.default.createElement("td", null, t.day_change)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Change PCT"), _react.default.createElement("td", null, t.change_pct)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Close Yesterday"), _react.default.createElement("td", null, t.close_yesterday)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Market Cap"), _react.default.createElement("td", null, t.market_cap)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Volume"), _react.default.createElement("td", null, t.volume)), _react.default.createElement("tr", null, _react.default.createElement("th", null, "Shares"), _react.default.createElement("td", null, t.shares))));
-  })), _react.default.createElement(_HomeHistory.default, null), _react.default.createElement("hr", null), _react.default.createElement(_HomeNews.default, null));
+  })), _react.default.createElement(_HomeHistory.default, null), _react.default.createElement("hr", {
+    className: "col-md-12"
+  }), _react.default.createElement(_HomeNews.default, null));
 }
 
 var _default = HomeStock;
@@ -77817,7 +77819,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61251" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50754" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
