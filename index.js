@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const methodOverride = require('method-override');
 
 const databaseConnect = require('./database');
 
@@ -21,6 +22,7 @@ app.use(
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 app.use('/api/v1', require('./routes'));
 

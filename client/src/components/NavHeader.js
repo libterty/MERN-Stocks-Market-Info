@@ -18,24 +18,40 @@ import Headline from './Headline';
 function NavHeader() {
   const [stocks, setStocks] = useState([]);
   const [collapsed, setCollapsed] = useState(true);
+  const [name, setName] = useState('');
 
   useEffect(() => {
     fetch(`${document.location.origin}/api/v1/stocks`)
       .then(res => res.json())
       .then(json => setStocks(json));
-  }, []);
+  }, [createStock]);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
+
+  const createStock = () => {
+    fetch(`${document.location.origin}/api/v1/stocks/newStock`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({ name })
+    })
+      .then(res => res.json())
+      .then(json => console.log(json));
+  };
+
+  console.log('stocks should rerender', stocks)
 
   return (
     <Navbar color="faded" light>
       <NavbarBrand href="/" className="mr-auto">
         <i className="fas fa-chart-line">Stock Markets</i>
       </NavbarBrand>
-      <Headline />
+      {/* <Headline /> */}
       <NavbarToggler onClick={toggleNavbar} className="mr-2" />
       <Collapse isOpen={!collapsed} navbar>
-        <Form>
+        <Form action="/api/v1/stocks/newStock" method="POST">
           <FormGroup>
             <Label for="stock">
               <i className="far fa-paper-plane">&nbsp;Stock Code</i>
@@ -44,6 +60,8 @@ function NavHeader() {
               type="text"
               name="stock"
               id="stock"
+              value={name}
+              onChange={e => setName(e.target.value)}
               placeholder="Place ur stock code"
             />
           </FormGroup>
@@ -52,6 +70,7 @@ function NavHeader() {
             size="sm"
             color="danger"
             className="stock-submit"
+            onClick={createStock}
           >
             Submit
           </Button>

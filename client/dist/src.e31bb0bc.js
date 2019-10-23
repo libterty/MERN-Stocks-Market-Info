@@ -57997,18 +57997,41 @@ function NavHeader() {
       collapsed = _useState4[0],
       setCollapsed = _useState4[1];
 
+  var _useState5 = (0, _react.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      name = _useState6[0],
+      setName = _useState6[1];
+
   (0, _react.useEffect)(function () {
     fetch("".concat(document.location.origin, "/api/v1/stocks")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setStocks(json);
     });
-  }, []);
+  }, [createStock]);
 
   var toggleNavbar = function toggleNavbar() {
     return setCollapsed(!collapsed);
   };
 
+  var createStock = function createStock() {
+    fetch("".concat(document.location.origin, "/api/v1/stocks/newStock"), {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name
+      })
+    }).then(function (res) {
+      return res.json();
+    }).then(function (json) {
+      return console.log(json);
+    });
+  };
+
+  console.log('stocks should rerender', stocks);
   return _react.default.createElement(_reactstrap.Navbar, {
     color: "faded",
     light: true
@@ -58017,13 +58040,16 @@ function NavHeader() {
     className: "mr-auto"
   }, _react.default.createElement("i", {
     className: "fas fa-chart-line"
-  }, "Stock Markets")), _react.default.createElement(_Headline.default, null), _react.default.createElement(_reactstrap.NavbarToggler, {
+  }, "Stock Markets")), _react.default.createElement(_reactstrap.NavbarToggler, {
     onClick: toggleNavbar,
     className: "mr-2"
   }), _react.default.createElement(_reactstrap.Collapse, {
     isOpen: !collapsed,
     navbar: true
-  }, _react.default.createElement(_reactstrap.Form, null, _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
+  }, _react.default.createElement(_reactstrap.Form, {
+    action: "/api/v1/stocks/newStock",
+    method: "POST"
+  }, _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
     "for": "stock"
   }, _react.default.createElement("i", {
     className: "far fa-paper-plane"
@@ -58031,12 +58057,17 @@ function NavHeader() {
     type: "text",
     name: "stock",
     id: "stock",
+    value: name,
+    onChange: function onChange(e) {
+      return setName(e.target.value);
+    },
     placeholder: "Place ur stock code"
   })), _react.default.createElement(_reactstrap.Button, {
     type: "button",
     size: "sm",
     color: "danger",
-    className: "stock-submit"
+    className: "stock-submit",
+    onClick: createStock
   }, "Submit")), _react.default.createElement(_reactstrap.Nav, {
     navbar: true,
     className: "sideNav-content"
@@ -77461,7 +77492,7 @@ function HomeNews() {
 
   (0, _react.useEffect)(function () {
     var q = "".concat(new Date().getFullYear(), "-").concat(new Date().getMonth() + 1, "-").concat(new Date().getDate());
-    fetch("https://newsapi.org/v2/everything?domains=wsj.com&from=".concat(q, "&to=").concat(q, "&sortBy=popularity&apiKey=").concat("0724b4680bed44d0a54b940c0c5f1e88")).then(function (res) {
+    fetch("https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=".concat("0724b4680bed44d0a54b940c0c5f1e88")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setArticles(json.articles);
@@ -77819,7 +77850,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50754" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52597" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

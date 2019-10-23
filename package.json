@@ -72,6 +72,7 @@
         "history": "^4.10.1",
         "html-react-parser": "^0.9.1",
         "mdbreact": "^4.21.1",
+        "method-override": "^3.0.0",
         "mongoose": "^5.7.5",
         "parcel-bundler": "^1.12.4",
         "path": "^0.12.7",

@@ -15,7 +15,7 @@ function HomeNews() {
     const q = `${new Date().getFullYear()}-${new Date().getMonth() +
       1}-${new Date().getDate()}`;
     fetch(
-      `https://newsapi.org/v2/everything?domains=wsj.com&from=${q}&to=${q}&sortBy=popularity&apiKey=${process.env.news_key}`
+      `https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=${process.env.news_key}`
     )
       .then(res => res.json())
       .then(json => setArticles(json.articles));
