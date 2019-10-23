@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Collapse,
   Navbar,
@@ -14,19 +14,21 @@ import {
   Button
 } from 'reactstrap';
 import Headline from './Headline';
+import history from 'history';
 
 function NavHeader() {
+  const inputRef = useRef();
   const [stocks, setStocks] = useState([]);
   const [collapsed, setCollapsed] = useState(true);
   const [name, setName] = useState('');
+  const [update, setUpdate] = useState({});
 
   useEffect(() => {
+    console.log('check get req');
     fetch(`${document.location.origin}/api/v1/stocks`)
       .then(res => res.json())
       .then(json => setStocks(json));
-  }, [createStock]);
-
-  const toggleNavbar = () => setCollapsed(!collapsed);
+  }, [update]);
 
   const createStock = () => {
     fetch(`${document.location.origin}/api/v1/stocks/newStock`, {
@@ -38,10 +40,28 @@ function NavHeader() {
       body: JSON.stringify({ name })
     })
       .then(res => res.json())
-      .then(json => console.log(json));
+      .then(json => setUpdate(json));
   };
 
-  console.log('stocks should rerender', stocks)
+  const deleteStock = () => {
+    fetch(`${document.location.origin}/api/v1/stocks/:id/delete`, {
+      method: 'POST',
+      redirect: 'follow',
+      location: '/',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(json => {
+        console.log(document.location);
+      });
+  };
+
+  const toggleNavbar = () => setCollapsed(!collapsed);
+
+  console.log('check global');
 
   return (
     <Navbar color="faded" light>
@@ -57,6 +77,7 @@ function NavHeader() {
               <i className="far fa-paper-plane">&nbsp;Stock Code</i>
             </Label>
             <Input
+              ref={inputRef}
               type="text"
               name="stock"
               id="stock"
@@ -81,7 +102,18 @@ function NavHeader() {
             return (
               <NavItem className="main" key={stock._id}>
                 <NavLink href={`/stocks/${stock.name}`} className="create-item">
-                  <i className="fas fa-minus-circle" id={stock._id} />
+                  <Form
+                    action={`api/v1/stocks/${stock._id}/delete/?_method=DELETE`}
+                    method="POST"
+                  >
+                    <Button
+                      className="fas fa-minus-circle"
+                      color="danger"
+                      id={stock._id}
+                      type="submit"
+                      onClick={deleteStock}
+                    />
+                  </Form>
                   <div className="stock-item">
                     <span>{stock.name}</span>
                   </div>

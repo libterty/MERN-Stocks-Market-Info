@@ -57972,6 +57972,8 @@ var _reactstrap = require("reactstrap");
 
 var _Headline = _interopRequireDefault(require("./Headline"));
 
+var _history = _interopRequireDefault(require("history"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -57987,6 +57989,8 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function NavHeader() {
+  var inputRef = (0, _react.useRef)();
+
   var _useState = (0, _react.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       stocks = _useState2[0],
@@ -58002,17 +58006,19 @@ function NavHeader() {
       name = _useState6[0],
       setName = _useState6[1];
 
+  var _useState7 = (0, _react.useState)({}),
+      _useState8 = _slicedToArray(_useState7, 2),
+      update = _useState8[0],
+      setUpdate = _useState8[1];
+
   (0, _react.useEffect)(function () {
+    console.log('check get req');
     fetch("".concat(document.location.origin, "/api/v1/stocks")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setStocks(json);
     });
-  }, [createStock]);
-
-  var toggleNavbar = function toggleNavbar() {
-    return setCollapsed(!collapsed);
-  };
+  }, [update]);
 
   var createStock = function createStock() {
     fetch("".concat(document.location.origin, "/api/v1/stocks/newStock"), {
@@ -58027,11 +58033,31 @@ function NavHeader() {
     }).then(function (res) {
       return res.json();
     }).then(function (json) {
-      return console.log(json);
+      return setUpdate(json);
     });
   };
 
-  console.log('stocks should rerender', stocks);
+  var deleteStock = function deleteStock() {
+    fetch("".concat(document.location.origin, "/api/v1/stocks/:id/delete"), {
+      method: 'POST',
+      redirect: 'follow',
+      location: '/',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json'
+      }
+    }).then(function (res) {
+      return res.json();
+    }).then(function (json) {
+      console.log(document.location);
+    });
+  };
+
+  var toggleNavbar = function toggleNavbar() {
+    return setCollapsed(!collapsed);
+  };
+
+  console.log('check global');
   return _react.default.createElement(_reactstrap.Navbar, {
     color: "faded",
     light: true
@@ -58054,6 +58080,7 @@ function NavHeader() {
   }, _react.default.createElement("i", {
     className: "far fa-paper-plane"
   }, "\xA0Stock Code")), _react.default.createElement(_reactstrap.Input, {
+    ref: inputRef,
     type: "text",
     name: "stock",
     id: "stock",
@@ -58078,10 +58105,16 @@ function NavHeader() {
     }, _react.default.createElement(_reactstrap.NavLink, {
       href: "/stocks/".concat(stock.name),
       className: "create-item"
-    }, _react.default.createElement("i", {
+    }, _react.default.createElement(_reactstrap.Form, {
+      action: "api/v1/stocks/".concat(stock._id, "/delete/?_method=DELETE"),
+      method: "POST"
+    }, _react.default.createElement(_reactstrap.Button, {
       className: "fas fa-minus-circle",
-      id: stock._id
-    }), _react.default.createElement("div", {
+      color: "danger",
+      id: stock._id,
+      type: "submit",
+      onClick: deleteStock
+    })), _react.default.createElement("div", {
       className: "stock-item"
     }, _react.default.createElement("span", null, stock.name))));
   }))));
@@ -58089,7 +58122,7 @@ function NavHeader() {
 
 var _default = NavHeader;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./Headline":"components/Headline.js"}],"../../node_modules/moment/moment.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./Headline":"components/Headline.js","history":"../../node_modules/history/esm/history.js"}],"../../node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 //! moment.js
@@ -77850,7 +77883,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52597" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52299" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
