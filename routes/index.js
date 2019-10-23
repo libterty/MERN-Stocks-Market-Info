@@ -25,12 +25,8 @@ router.post('/stocks/newStock', async (req, res) => {
 
 router.delete('/stocks/:id/delete', async (req, res) => {
   try {
-    // await stocks.findOne({ _id: req.params.id }, (err, stock) => {
-    //   if (err) throw new Error(err);
-    //   stock.remove();
-    // });
-    const stock = await stocks.deleteOne({ _id: req.params.id });
-    res.status(201).send(stock);
+    await stocks.deleteOne({ _id: req.params.id });
+    res.status(201).redirect('/');
   } catch (error) {
     console.log(error);
   }
