@@ -58072,7 +58072,7 @@ function NavHeader() {
     className: "mr-auto"
   }, _react.default.createElement("i", {
     className: "fas fa-chart-line"
-  }, "Stock Markets")), _react.default.createElement(_reactstrap.NavbarToggler, {
+  }, "Stock Markets")), _react.default.createElement(_Headline.default, null), _react.default.createElement(_reactstrap.NavbarToggler, {
     onClick: toggleNavbar,
     className: "mr-2"
   }), _react.default.createElement(_reactstrap.Collapse, {
@@ -77702,6 +77702,7 @@ function StockItemHistory() {
         }]
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [{
             ticks: {
@@ -77892,7 +77893,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55720" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60587" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

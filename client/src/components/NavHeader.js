@@ -71,7 +71,7 @@ function NavHeader() {
       <NavbarBrand href="/" className="mr-auto">
         <i className="fas fa-chart-line">Stock Markets</i>
       </NavbarBrand>
-      {/* <Headline /> */}
+      <Headline />
       <NavbarToggler onClick={toggleNavbar} className="mr-2" />
       <Collapse isOpen={!collapsed} navbar>
         <Form action="/api/v1/stocks/newStock" method="POST">
