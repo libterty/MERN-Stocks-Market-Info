@@ -1,13 +1,16 @@
 const express = require('express');
 
+const jwt = require('jsonwebtoken');
+
 const router = express.Router();
 const authorization = require('../middlewares/jwt');
 const Stocks = require('../models/stock');
 
 router.get('/stocks', authorization, async (req, res) => {
-  console.log(req.headers);
+  // console.log('req.headers',req.headers['x-access-token']);
+  // console.log('req.user', req.user)
   try {
-    res.status(200).send(await Stocks.find({}));
+    res.status(200).send(await Stocks.find({ userId: req.user._id }));
   } catch (error) {
     console.log(error);
   }
