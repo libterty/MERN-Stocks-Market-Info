@@ -9,7 +9,7 @@ const User = require('../models/user');
 // Signin User
 router.post('/signin', async (req, res) => {
   try {
-    console.log('req.body', req.body)
+    console.log('req.body', req.body);
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
       return res.status(404).send('Invalid password or email');

@@ -2,24 +2,26 @@ import 'babel-core/register';
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import App from './components/App';
 import StockItem from './components/StockItem';
 import Login from './components/Login';
 import history from './history';
 import './assets/main.css';
 
+const jwt = JSON.parse(localStorage.getItem('data'));
+
 ReactDOM.render(
   <Router history={history}>
     <Switch>
       <Route exact path="/">
-        <App />
+        {jwt === null ? <Redirect to="/users/login" /> : <App />}
       </Route>
       <Route exact path="/stocks/:symbol">
-        <StockItem />
+        {jwt === null ? <Redirect to="/users/login" /> : <StockItem />}
       </Route>
       <Route exact path="/users/login">
-        <Login />
+        {jwt !== null ? <Redirect to="/" /> : <Login />}
       </Route>
     </Switch>
   </Router>,

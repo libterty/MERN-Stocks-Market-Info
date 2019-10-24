@@ -77965,18 +77965,26 @@ require("./assets/main.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var jwt = JSON.parse(localStorage.getItem('data'));
+
 _reactDom.default.render(_react.default.createElement(_reactRouterDom.Router, {
   history: _history.default
 }, _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
   exact: true,
   path: "/"
-}, _react.default.createElement(_App.default, null)), _react.default.createElement(_reactRouterDom.Route, {
+}, jwt === null ? _react.default.createElement(_reactRouterDom.Redirect, {
+  to: "/users/login"
+}) : _react.default.createElement(_App.default, null)), _react.default.createElement(_reactRouterDom.Route, {
   exact: true,
   path: "/stocks/:symbol"
-}, _react.default.createElement(_StockItem.default, null)), _react.default.createElement(_reactRouterDom.Route, {
+}, jwt === null ? _react.default.createElement(_reactRouterDom.Redirect, {
+  to: "/users/login"
+}) : _react.default.createElement(_StockItem.default, null)), _react.default.createElement(_reactRouterDom.Route, {
   exact: true,
   path: "/users/login"
-}, _react.default.createElement(_Login.default, null)))), document.getElementById('root'));
+}, jwt !== null ? _react.default.createElement(_reactRouterDom.Redirect, {
+  to: "/"
+}) : _react.default.createElement(_Login.default, null)))), document.getElementById('root'));
 },{"babel-core/register":"../../node_modules/babel-core/register.js","babel-polyfill":"../../node_modules/babel-polyfill/lib/index.js","react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./components/App":"components/App.js","./components/StockItem":"components/StockItem.js","./components/Login":"components/Login.js","./history":"history.js","./assets/main.css":"assets/main.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -78005,7 +78013,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64937" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49996" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
