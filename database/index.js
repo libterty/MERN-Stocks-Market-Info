@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const appConfig = require('../config');
 
-const databaseConnect = () => {
+const databaseConnect = (config = appConfig) => {
   return mongoose
-    .connect('mongodb://127.0.0.1/stocksapi', {
+    .connect(config.database, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true

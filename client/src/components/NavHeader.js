@@ -26,7 +26,11 @@ function NavHeader() {
 
   useEffect(() => {
     console.log('check get req');
-    fetch(`${document.location.origin}/api/v1/stocks`)
+    fetch(`${document.location.origin}/api/v1/stocks`, {
+      headers: {
+        'x-access-token': JSON.parse(localStorage.getItem('data'))
+      }
+    })
       .then(res => res.json())
       .then(json => setStocks(json));
   }, [update]);

@@ -58018,7 +58018,11 @@ function NavHeader() {
 
   (0, _react.useEffect)(function () {
     console.log('check get req');
-    fetch("".concat(document.location.origin, "/api/v1/stocks")).then(function (res) {
+    fetch("".concat(document.location.origin, "/api/v1/stocks"), {
+      headers: {
+        'x-access-token': JSON.parse(localStorage.getItem('data'))
+      }
+    }).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setStocks(json);
@@ -77748,7 +77752,110 @@ function StockItem() {
 
 var _default = StockItem;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","./NavHeader":"components/NavHeader.js","./StockItemHistory":"components/StockItemHistory.js"}],"history.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","./NavHeader":"components/NavHeader.js","./StockItemHistory":"components/StockItemHistory.js"}],"components/Login.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactstrap = require("reactstrap");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function Login() {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isLogin = _useState2[0],
+      setIsLogin = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      email = _useState4[0],
+      setEmail = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      password = _useState6[0],
+      setPassword = _useState6[1];
+
+  var loginUser = function loginUser() {
+    fetch("".concat(document.location.origin, "/api/v1/users/signin"), {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    }).then(function (res) {
+      return res.headers.get('x-access-token');
+    }).then(function (data) {
+      return localStorage.setItem('data', JSON.stringify(data));
+    }).catch(function (err) {
+      return console.log(err);
+    });
+  };
+
+  return _react.default.createElement("div", {
+    className: "container mb-3 Login"
+  }, _react.default.createElement("div", {
+    className: "row mt-t"
+  }, _react.default.createElement("div", {
+    className: "col-md-6 m-auto"
+  }, _react.default.createElement("div", {
+    className: "card card-body"
+  }, _react.default.createElement("h1", {
+    className: "text-center mb-3"
+  }, " Log In "), _react.default.createElement(_reactstrap.Form, {
+    action: "/api/v1/users/signin",
+    method: "POST"
+  }, _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
+    htmlFor: "email"
+  }, " Email "), _react.default.createElement(_reactstrap.Input, {
+    type: "email",
+    id: "email",
+    name: "email",
+    placeholder: "Enter your email",
+    value: email,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    }
+  })), _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
+    htmlFor: "password"
+  }, " Password "), _react.default.createElement(_reactstrap.Input, {
+    type: "password",
+    id: "password",
+    name: "password",
+    placeholder: "Enter your password",
+    value: password,
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    }
+  }), _react.default.createElement(_reactstrap.Button, {
+    color: "success",
+    size: "lg",
+    onClick: loginUser
+  }, "Submit")))))));
+}
+
+var _default = Login;
+exports.default = _default;
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js"}],"history.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77850,6 +77957,8 @@ var _App = _interopRequireDefault(require("./components/App"));
 
 var _StockItem = _interopRequireDefault(require("./components/StockItem"));
 
+var _Login = _interopRequireDefault(require("./components/Login"));
+
 var _history = _interopRequireDefault(require("./history"));
 
 require("./assets/main.css");
@@ -77864,8 +77973,11 @@ _reactDom.default.render(_react.default.createElement(_reactRouterDom.Router, {
 }, _react.default.createElement(_App.default, null)), _react.default.createElement(_reactRouterDom.Route, {
   exact: true,
   path: "/stocks/:symbol"
-}, _react.default.createElement(_StockItem.default, null)))), document.getElementById('root'));
-},{"babel-core/register":"../../node_modules/babel-core/register.js","babel-polyfill":"../../node_modules/babel-polyfill/lib/index.js","react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./components/App":"components/App.js","./components/StockItem":"components/StockItem.js","./history":"history.js","./assets/main.css":"assets/main.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+}, _react.default.createElement(_StockItem.default, null)), _react.default.createElement(_reactRouterDom.Route, {
+  exact: true,
+  path: "/users/login"
+}, _react.default.createElement(_Login.default, null)))), document.getElementById('root'));
+},{"babel-core/register":"../../node_modules/babel-core/register.js","babel-polyfill":"../../node_modules/babel-polyfill/lib/index.js","react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./components/App":"components/App.js","./components/StockItem":"components/StockItem.js","./components/Login":"components/Login.js","./history":"history.js","./assets/main.css":"assets/main.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -77893,7 +78005,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60587" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64937" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

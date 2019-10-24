@@ -1,10 +1,11 @@
 const express = require('express');
 
 const router = express.Router();
-
+const authorization = require('../middlewares/jwt');
 const Stocks = require('../models/stock');
 
-router.get('/stocks', async (req, res) => {
+router.get('/stocks', authorization, async (req, res) => {
+  console.log(req.headers);
   try {
     res.status(200).send(await Stocks.find({}));
   } catch (error) {

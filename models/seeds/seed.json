@@ -1,9 +1,15 @@
 {
     "results": [{
+        "id": 1,
         "name": "TSLA"
     }, {
+        "id": 2,
         "name": "AAPL"
     }, {
+        "id": 3,
         "name": "GOOGL"
+    }, {
+        "id": 4,
+        "name": "AMZN"
     }]
 }
