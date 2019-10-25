@@ -58115,8 +58115,17 @@ function NavHeader() {
       isShow = _useState10[0],
       setIsShow = _useState10[1];
 
+  var _useState11 = (0, _react.useState)(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      isDelete = _useState12[0],
+      setIsDelete = _useState12[1];
+
+  var _useState13 = (0, _react.useState)(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      isCreate = _useState14[0],
+      setIsCreate = _useState14[1];
+
   (0, _react.useEffect)(function () {
-    console.log('check get req');
     fetch("".concat(document.location.origin, "/api/v1/stocks"), {
       headers: {
         'x-access-token': JSON.parse(localStorage.getItem('data'))
@@ -58127,49 +58136,54 @@ function NavHeader() {
       return setStocks(json);
     });
   }, [update]);
-
-  var createStock = function createStock() {
-    fetch("".concat(document.location.origin, "/api/v1/stocks/newStock"), {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json',
-        'x-access-token': JSON.parse(localStorage.getItem('data'))
-      },
-      body: JSON.stringify({
-        name: name
-      })
-    }).then(function (res) {
-      return res.json();
-    }).then(function (json) {
-      setUpdate(json);
-      setIsShow(true);
-      setName('');
-    });
-  };
-
-  var deleteStock = function deleteStock() {
-    fetch("".concat(document.location.origin, "/api/v1/stocks/:id/delete"), {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json',
-        'x-access-token': JSON.parse(localStorage.getItem('data'))
-      }
-    });
-  };
+  (0, _react.useEffect)(function () {
+    if (isCreate) {
+      fetch("".concat(document.location.origin, "/api/v1/stocks/newStock"), {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+          'x-access-token': JSON.parse(localStorage.getItem('data'))
+        },
+        body: JSON.stringify({
+          name: name
+        })
+      }).then(function (res) {
+        return res.json();
+      }).then(function (json) {
+        setUpdate(json);
+        setIsShow(true);
+        setName('');
+      });
+    }
+  }, [isCreate]);
+  (0, _react.useEffect)(function () {
+    if (isDelete) {
+      fetch("http://localhost:3002/api/v1/stocks/:id/", {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': JSON.parse(localStorage.getItem('data'))
+        }
+      }).then(function (res) {
+        return console.log(res);
+      }).catch(function (err) {
+        return console.log(err);
+      });
+    }
+  }, [isDelete]);
 
   var toggleNavbar = function toggleNavbar() {
     return setCollapsed(!collapsed);
   };
 
-  console.log('check global');
-
-  if (isShow) {
-    alert(update.message);
-    setIsShow(false);
-  }
-
+  (0, _react.useEffect)(function () {
+    if (isShow) {
+      alert(update.message);
+      setIsShow(false);
+    }
+  }, [isShow]);
   return _react.default.createElement(_reactstrap.Navbar, {
     color: "faded",
     light: true
@@ -58206,20 +58220,41 @@ function NavHeader() {
     size: "sm",
     color: "danger",
     className: "stock-submit",
-    onClick: createStock
+    onClick: function onClick() {
+      return setIsCreate(true);
+    }
   }, "Submit")), _react.default.createElement(_reactstrap.Nav, {
     navbar: true,
     className: "sideNav-content"
   }, _react.default.createElement("h6", null, "Your stock lists"), stocks.map(function (stock) {
-    return _react.default.createElement(_reactstrap.NavItem, {
+    return _react.default.createElement("div", {
       className: "main",
       key: stock._id
+    }, _react.default.createElement(_reactstrap.Form, {
+      method: "POST",
+      action: "api/v1/stocks/".concat(stock._id, "/?_method=DELETE")
+    }, _react.default.createElement(_reactstrap.Input, {
+      type: "hidden",
+      name: "_method",
+      value: "DELETE"
+    }), _react.default.createElement(_reactstrap.Button, {
+      className: "fas fa-minus-circle",
+      color: "danger",
+      type: "submit",
+      onClick: function onClick() {
+        return setIsDelete(true);
+      }
+    })), _react.default.createElement(_reactstrap.NavItem, {
+      className: "main"
     }, _react.default.createElement(_reactstrap.NavLink, {
       href: "/stocks/".concat(stock.name),
       className: "create-item"
     }, _react.default.createElement("div", {
-      className: "stock-item"
-    }, _react.default.createElement("span", null, stock.name))));
+      className: "stock-item",
+      style: {
+        paddingLeft: '0.5rem;'
+      }
+    }, _react.default.createElement("span", null, stock.name)))));
   }), _react.default.createElement(_Logout.default, null))));
 }
 

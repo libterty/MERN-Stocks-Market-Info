@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken');
-const config = require('../config');
 
 const authorization = async (req, res, next) => {
   const token = await req.header('x-access-token');
   console.log(token);
+  const stockId = await req.params.id;
+  console.log(stockId);
   // check users if it's signin or invalid
   if (!token) {
     return res.status(401).send('You must sign in first');
@@ -13,6 +14,7 @@ const authorization = async (req, res, next) => {
     const userInfo = jwt.verify(token, process.env.JWT_TOKEN);
     // console.log('userInfo', userInfo);
     req.user = userInfo;
+    req.stockId = stockId;
     next();
   } catch (error) {
     res.status(400).send('Your token is invalid');

@@ -57,6 +57,11 @@ body {
     /* margin-top: 1.5rem; */
 }
 
+.main {
+    display: flex !important;
+    flex-flow: row nowrap;
+}
+
 label {
     float: left;
 }
