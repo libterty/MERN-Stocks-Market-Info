@@ -24,9 +24,10 @@ function NavHeader() {
   const [name, setName] = useState('');
   const [update, setUpdate] = useState({});
   const [isShow, setIsShow] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+  const [isCreate, setIsCreate] = useState(false);
 
   useEffect(() => {
-    console.log('check get req');
     fetch(`${document.location.origin}/api/v1/stocks`, {
       headers: {
         'x-access-token': JSON.parse(localStorage.getItem('data'))
@@ -36,43 +37,49 @@ function NavHeader() {
       .then(json => setStocks(json));
   }, [update]);
 
-  const createStock = () => {
-    fetch(`${document.location.origin}/api/v1/stocks/newStock`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json',
-        'x-access-token': JSON.parse(localStorage.getItem('data'))
-      },
-      body: JSON.stringify({ name })
-    })
-      .then(res => res.json())
-      .then(json => {
-        setUpdate(json);
-        setIsShow(true);
-        setName('');
-      });
-  };
+  useEffect(() => {
+    if (isCreate) {
+      fetch(`${document.location.origin}/api/v1/stocks/newStock`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+          'x-access-token': JSON.parse(localStorage.getItem('data'))
+        },
+        body: JSON.stringify({ name })
+      })
+        .then(res => res.json())
+        .then(json => {
+          setUpdate(json);
+          setIsShow(true);
+          setName('');
+        });
+    }
+  }, [isCreate]);
 
-  const deleteStock = () => {
-    fetch(`${document.location.origin}/api/v1/stocks/:id/delete`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json',
-        'x-access-token': JSON.parse(localStorage.getItem('data'))
-      }
-    });
-  };
+  useEffect(() => {
+    if (isDelete) {
+      fetch(`http://localhost:3002/api/v1/stocks/:id/`, {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'x-access-token': JSON.parse(localStorage.getItem('data'))
+        }
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+  }, [isDelete]);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
-  console.log('check global');
-
-  if (isShow) {
-    alert(update.message);
-    setIsShow(false);
-  }
+  useEffect(() => {
+    if (isShow) {
+      alert(update.message);
+      setIsShow(false);
+    }
+  }, [isShow]);
 
   return (
     <Navbar color="faded" light>
@@ -102,7 +109,7 @@ function NavHeader() {
             size="sm"
             color="danger"
             className="stock-submit"
-            onClick={createStock}
+            onClick={() => setIsCreate(true)}
           >
             Submit
           </Button>
@@ -111,24 +118,33 @@ function NavHeader() {
           <h6>Your stock lists</h6>
           {stocks.map(stock => {
             return (
-              <NavItem className="main" key={stock._id}>
-                <NavLink href={`/stocks/${stock.name}`} className="create-item">
-                  {/* <Form
-                    action={`api/v1/stocks/${stock._id}/delete/?_method=DELETE`}
-                    method="POST"
+              <div className="main" key={stock._id}>
+                <Form
+                  method="POST"
+                  action={`api/v1/stocks/${stock._id}/?_method=DELETE`}
+                >
+                  <Input type="hidden" name="_method" value="DELETE" />
+                  <Button
+                    className="fas fa-minus-circle"
+                    color="danger"
+                    type="submit"
+                    onClick={() => setIsDelete(true)}
+                  />
+                </Form>
+                <NavItem className="main">
+                  <NavLink
+                    href={`/stocks/${stock.name}`}
+                    className="create-item"
                   >
-                    <Button
-                      className="fas fa-minus-circle"
-                      color="danger"
-                      type="button"
-                      onClick={deleteStock}
-                    />
-                  </Form> */}
-                  <div className="stock-item">
-                    <span>{stock.name}</span>
-                  </div>
-                </NavLink>
-              </NavItem>
+                    <div
+                      className="stock-item"
+                      style={{ paddingLeft: '0.5rem;' }}
+                    >
+                      <span>{stock.name}</span>
+                    </div>
+                  </NavLink>
+                </NavItem>
+              </div>
             );
           })}
           <Logout />

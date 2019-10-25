@@ -6,7 +6,8 @@ const databaseConnect = (config = appConfig) => {
     .connect(config.database, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true
+      useCreateIndex: true,
+      useFindAndModify: false
     })
     .then(() => console.log('DB connecting'))
     .catch(err => console.log(err));

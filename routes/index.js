@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 const router = express.Router();
 const authorization = require('../middlewares/jwt');
@@ -52,7 +53,7 @@ router.post('/stocks/newStock', authorization, async (req, res) => {
   }
 });
 
-router.delete('/stocks/:id/delete', authorization, async (req, res) => {
+router.delete('/stocks/:id/', authorization, async (req, res) => {
   try {
     const user = await Stocks.findOne({
       userId: req.user._id
@@ -60,14 +61,23 @@ router.delete('/stocks/:id/delete', authorization, async (req, res) => {
     console.log('user', user);
     // res.status(200).redirect('/');
     if (user) {
-      await Stocks.findOneAndRemove({
-        userId: req.user._id,
-        _id: req.params.id
-      });
-      res.status(200).json({ type: 'success', message: 'delete success' });
+      Stocks.findOne(
+        {
+          userId: user.userId,
+          _id: new mongoose.mongo.ObjectID(user._id)
+        },
+        (err, stock) => {
+          if (err) throw new Error(err);
+          stock.remove(() => {
+            res
+              .status(204)
+              .json({ type: 'success', message: 'delete success' });
+          });
+        }
+      );
     }
   } catch (error) {
-    res.status(404).json({ type: 'fail', message: error.message });
+    return res.status(404).json({ type: 'fail', message: error.message });
   }
 });
 
