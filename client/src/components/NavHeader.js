@@ -13,8 +13,8 @@ import {
   Input,
   Button
 } from 'reactstrap';
-import history from 'history';
-import Headline from './Headline';
+// import history from 'history';
+// import Headline from './Headline';
 import Logout from './Logout';
 
 function NavHeader() {
