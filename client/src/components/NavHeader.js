@@ -15,6 +15,7 @@ import {
 } from 'reactstrap';
 import history from 'history';
 import Headline from './Headline';
+import Logout from './Logout';
 
 function NavHeader() {
   const inputRef = useRef();
@@ -40,7 +41,8 @@ function NavHeader() {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        'x-access-token': JSON.parse(localStorage.getItem('data'))
       },
       body: JSON.stringify({ name })
     })
@@ -54,9 +56,11 @@ function NavHeader() {
 
   const deleteStock = () => {
     fetch(`${document.location.origin}/api/v1/stocks/:id/delete`, {
-      method: 'DELETE',
+      method: 'POST',
       headers: {
-        'Content-type': 'application/json'
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        'x-access-token': JSON.parse(localStorage.getItem('data'))
       }
     });
   };
@@ -75,7 +79,7 @@ function NavHeader() {
       <NavbarBrand href="/" className="mr-auto">
         <i className="fas fa-chart-line">Stock Markets</i>
       </NavbarBrand>
-      <Headline />
+      {/* <Headline /> */}
       <NavbarToggler onClick={toggleNavbar} className="mr-2" />
       <Collapse isOpen={!collapsed} navbar>
         <Form action="/api/v1/stocks/newStock" method="POST">
@@ -109,18 +113,17 @@ function NavHeader() {
             return (
               <NavItem className="main" key={stock._id}>
                 <NavLink href={`/stocks/${stock.name}`} className="create-item">
-                  <Form
+                  {/* <Form
                     action={`api/v1/stocks/${stock._id}/delete/?_method=DELETE`}
                     method="POST"
                   >
                     <Button
                       className="fas fa-minus-circle"
                       color="danger"
-                      id={stock._id}
-                      type="submit"
+                      type="button"
                       onClick={deleteStock}
                     />
-                  </Form>
+                  </Form> */}
                   <div className="stock-item">
                     <span>{stock.name}</span>
                   </div>
@@ -128,6 +131,7 @@ function NavHeader() {
               </NavItem>
             );
           })}
+          <Logout />
         </Nav>
       </Collapse>
     </Navbar>

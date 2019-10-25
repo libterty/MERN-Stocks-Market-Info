@@ -57958,7 +57958,104 @@ function Headline() {
 
 var _default = Headline;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js"}],"components/NavHeader.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js"}],"history.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _history = require("history");
+
+var _default = (0, _history.createBrowserHistory)();
+
+exports.default = _default;
+},{"history":"../../node_modules/history/esm/history.js"}],"components/Logout.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactstrap = require("reactstrap");
+
+var _history = _interopRequireDefault(require("../history"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function Logout() {
+  var jwt = JSON.parse(localStorage.getItem('data'));
+
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isLogout = _useState2[0],
+      setIsLogout = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    if (!jwt) {
+      _history.default.push('/users/login');
+    }
+  }, [isLogout]);
+
+  var logoutUser = function logoutUser() {
+    fetch("".concat(document.location.origin, "/api/v1/users/logout"), {
+      headers: {
+        'Content-type': 'application/json',
+        'x-access-token': JSON.parse(localStorage.getItem('data'))
+      }
+    }).then(function (res) {
+      res.json();
+      localStorage.clear('data');
+    }).then(function (json) {
+      console.log('logout info', json);
+      setIsLogout(true);
+    });
+  };
+
+  var directToLogin = function directToLogin() {
+    if (isLogout) {
+      _history.default.push('/users/login');
+    }
+  };
+
+  return _react.default.createElement("div", {
+    className: "Logout"
+  }, isLogout ? _react.default.createElement(_reactstrap.Form, {
+    className: "login-user-btn"
+  }, _react.default.createElement(_reactstrap.Button, {
+    size: "sm",
+    type: "button",
+    color: "success",
+    onClick: directToLogin
+  }, "Login")) : _react.default.createElement(_reactstrap.Form, {
+    className: "logout-user-btn"
+  }, _react.default.createElement(_reactstrap.Button, {
+    size: "sm",
+    type: "submit",
+    color: "danger",
+    onClick: logoutUser
+  }, "Logout")));
+}
+
+var _default = Logout;
+exports.default = _default;
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","../history":"history.js"}],"components/NavHeader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57973,6 +58070,8 @@ var _reactstrap = require("reactstrap");
 var _history = _interopRequireDefault(require("history"));
 
 var _Headline = _interopRequireDefault(require("./Headline"));
+
+var _Logout = _interopRequireDefault(require("./Logout"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -58034,7 +58133,8 @@ function NavHeader() {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        'x-access-token': JSON.parse(localStorage.getItem('data'))
       },
       body: JSON.stringify({
         name: name
@@ -58050,9 +58150,11 @@ function NavHeader() {
 
   var deleteStock = function deleteStock() {
     fetch("".concat(document.location.origin, "/api/v1/stocks/:id/delete"), {
-      method: 'DELETE',
+      method: 'POST',
       headers: {
-        'Content-type': 'application/json'
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        'x-access-token': JSON.parse(localStorage.getItem('data'))
       }
     });
   };
@@ -58076,7 +58178,7 @@ function NavHeader() {
     className: "mr-auto"
   }, _react.default.createElement("i", {
     className: "fas fa-chart-line"
-  }, "Stock Markets")), _react.default.createElement(_Headline.default, null), _react.default.createElement(_reactstrap.NavbarToggler, {
+  }, "Stock Markets")), _react.default.createElement(_reactstrap.NavbarToggler, {
     onClick: toggleNavbar,
     className: "mr-2"
   }), _react.default.createElement(_reactstrap.Collapse, {
@@ -58115,24 +58217,15 @@ function NavHeader() {
     }, _react.default.createElement(_reactstrap.NavLink, {
       href: "/stocks/".concat(stock.name),
       className: "create-item"
-    }, _react.default.createElement(_reactstrap.Form, {
-      action: "api/v1/stocks/".concat(stock._id, "/delete/?_method=DELETE"),
-      method: "POST"
-    }, _react.default.createElement(_reactstrap.Button, {
-      className: "fas fa-minus-circle",
-      color: "danger",
-      id: stock._id,
-      type: "submit",
-      onClick: deleteStock
-    })), _react.default.createElement("div", {
+    }, _react.default.createElement("div", {
       className: "stock-item"
     }, _react.default.createElement("span", null, stock.name))));
-  }))));
+  }), _react.default.createElement(_Logout.default, null))));
 }
 
 var _default = NavHeader;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","history":"../../node_modules/history/esm/history.js","./Headline":"components/Headline.js"}],"../../node_modules/moment/moment.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","history":"../../node_modules/history/esm/history.js","./Headline":"components/Headline.js","./Logout":"components/Logout.js"}],"../../node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 //! moment.js
@@ -77764,6 +77857,10 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactstrap = require("reactstrap");
 
+var _history = _interopRequireDefault(require("../history"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -77805,12 +77902,19 @@ function Login() {
     }).then(function (res) {
       return res.headers.get('x-access-token');
     }).then(function (data) {
-      return localStorage.setItem('data', JSON.stringify(data));
+      localStorage.setItem('data', JSON.stringify(data));
+      setIsLogin(true);
     }).catch(function (err) {
       return console.log(err);
     });
   };
 
+  (0, _react.useEffect)(function () {
+    // const isToken = JSON.parse(localStorage.getItem('data'));
+    if (isLogin) {
+      _history.default.push('/');
+    }
+  }, [isLogin]);
   return _react.default.createElement("div", {
     className: "container mb-3 Login"
   }, _react.default.createElement("div", {
@@ -77846,16 +77950,16 @@ function Login() {
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
-  }), _react.default.createElement(_reactstrap.Button, {
+  })), _react.default.createElement(_reactstrap.Button, {
     color: "success",
     size: "lg",
     onClick: loginUser
-  }, "Submit")))))));
+  }, "Submit"))))));
 }
 
 var _default = Login;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js"}],"history.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","../history":"history.js"}],"components/Register.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77863,12 +77967,146 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _history = require("history");
+var _react = _interopRequireWildcard(require("react"));
 
-var _default = (0, _history.createBrowserHistory)();
+var _reactstrap = require("reactstrap");
 
+var _history = _interopRequireDefault(require("../history"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function Register() {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isRegister = _useState2[0],
+      setIsRegister = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      name = _useState4[0],
+      setName = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      email = _useState6[0],
+      setEmail = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      password = _useState8[0],
+      setPassword = _useState8[1];
+
+  var _useState9 = (0, _react.useState)(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      confirmPassword = _useState10[0],
+      setConfirmPassword = _useState10[1];
+
+  var registerUser = function registerUser() {
+    fetch("".concat(document.location.origin, "/api/v1/users/register"), {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword
+      })
+    }).then(function (res) {
+      return res.headers.get('x-access-token');
+    }).then(function (data) {
+      localStorage.setItem('data', JSON.stringify(data));
+      setIsRegister(true);
+    }).catch(function (err) {
+      return console.log(err);
+    });
+  };
+
+  (0, _react.useEffect)(function () {
+    if (isRegister) {
+      _history.default.push('/');
+    }
+  }, [isRegister]);
+  return _react.default.createElement("div", {
+    className: "container mb-3 Login"
+  }, _react.default.createElement("div", {
+    className: "row mt-t"
+  }, _react.default.createElement("div", {
+    className: "col-md-6 m-auto"
+  }, _react.default.createElement("div", {
+    className: "card card-body"
+  }, _react.default.createElement("h1", {
+    className: "text-center mb-3"
+  }, " Register "), _react.default.createElement(_reactstrap.Form, {
+    action: "/api/v1/users/register",
+    method: "POST"
+  }, _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
+    htmlFor: "name"
+  }, " Username "), _react.default.createElement(_reactstrap.Input, {
+    type: "name",
+    id: "name",
+    name: "name",
+    placeholder: "Enter your name",
+    value: name,
+    onChange: function onChange(e) {
+      return setName(e.target.value);
+    }
+  })), _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
+    htmlFor: "email"
+  }, " Email "), _react.default.createElement(_reactstrap.Input, {
+    type: "email",
+    id: "email",
+    name: "email",
+    placeholder: "Enter your email",
+    value: email,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    }
+  })), _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
+    htmlFor: "password"
+  }, " Password "), _react.default.createElement(_reactstrap.Input, {
+    type: "password",
+    id: "password",
+    name: "password",
+    placeholder: "Enter your password",
+    value: password,
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    }
+  })), _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
+    htmlFor: "confirmPassword"
+  }, " confirmPassword "), _react.default.createElement(_reactstrap.Input, {
+    type: "password",
+    id: "confirmPassword",
+    name: "confirmPassword",
+    placeholder: "Enter your confirmPassword",
+    value: confirmPassword,
+    onChange: function onChange(e) {
+      return setConfirmPassword(e.target.value);
+    }
+  })), _react.default.createElement(_reactstrap.Button, {
+    color: "success",
+    size: "lg",
+    onClick: registerUser
+  }, "Submit"))))));
+}
+
+var _default = Register;
 exports.default = _default;
-},{"history":"../../node_modules/history/esm/history.js"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","../history":"history.js"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -77959,6 +78197,8 @@ var _StockItem = _interopRequireDefault(require("./components/StockItem"));
 
 var _Login = _interopRequireDefault(require("./components/Login"));
 
+var _Register = _interopRequireDefault(require("./components/Register"));
+
 var _history = _interopRequireDefault(require("./history"));
 
 require("./assets/main.css");
@@ -77984,8 +78224,13 @@ _reactDom.default.render(_react.default.createElement(_reactRouterDom.Router, {
   path: "/users/login"
 }, jwt !== null ? _react.default.createElement(_reactRouterDom.Redirect, {
   to: "/"
-}) : _react.default.createElement(_Login.default, null)))), document.getElementById('root'));
-},{"babel-core/register":"../../node_modules/babel-core/register.js","babel-polyfill":"../../node_modules/babel-polyfill/lib/index.js","react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./components/App":"components/App.js","./components/StockItem":"components/StockItem.js","./components/Login":"components/Login.js","./history":"history.js","./assets/main.css":"assets/main.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+}) : _react.default.createElement(_Login.default, null)), _react.default.createElement(_reactRouterDom.Route, {
+  exact: true,
+  path: "/users/register"
+}, jwt !== null ? _react.default.createElement(_reactRouterDom.Redirect, {
+  to: "/"
+}) : _react.default.createElement(_Register.default, null)))), document.getElementById('root'));
+},{"babel-core/register":"../../node_modules/babel-core/register.js","babel-polyfill":"../../node_modules/babel-polyfill/lib/index.js","react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./components/App":"components/App.js","./components/StockItem":"components/StockItem.js","./components/Login":"components/Login.js","./components/Register":"components/Register.js","./history":"history.js","./assets/main.css":"assets/main.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -78013,7 +78258,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49996" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54314" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -12,15 +12,13 @@ if (process.env.NODE_ENV !== 'production') {
 const port = process.env.PORT || 3002;
 
 databaseConnect();
-
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'client/dist')));
-
 app.use(
   cors({
     origin: true
   })
 );
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'client/dist')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 

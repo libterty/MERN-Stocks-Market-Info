@@ -81,8 +81,18 @@ router.post('/register', async (req, res) => {
         newUser.password = hash;
         newUser
           .save()
-          .then(user => {
+          .then(async user => {
+            const token = await jwt.sign(
+              {
+                _id: user._id
+              },
+              process.env.JWT_TOKEN,
+              { expiresIn: '7d' },
+              { algorithm: 'RS256' }
+            );
+
             return res
+              .header('x-access-token', token)
               .status(201)
               .json({ type: 'success', message: 'Create Success' });
           })
@@ -95,8 +105,12 @@ router.post('/register', async (req, res) => {
 });
 
 // logout User
-router.get('/logout', authorization, (req, res) => {
+router.get('/logout', authorization, async (req, res) => {
   try {
+    const user = await User.findOne({ _id: req.user._id });
+    if (!user) {
+      return res.status(400).json({ type: 'fail', message: 'Bad Request' });
+    }
     return res
       .status(200)
       .json({ type: 'success', message: 'You have success logout' });

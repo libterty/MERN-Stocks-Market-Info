@@ -6,6 +6,7 @@ import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import App from './components/App';
 import StockItem from './components/StockItem';
 import Login from './components/Login';
+import Register from './components/Register';
 import history from './history';
 import './assets/main.css';
 
@@ -22,6 +23,9 @@ ReactDOM.render(
       </Route>
       <Route exact path="/users/login">
         {jwt !== null ? <Redirect to="/" /> : <Login />}
+      </Route>
+      <Route exact path="/users/register">
+        {jwt !== null ? <Redirect to="/" /> : <Register />}
       </Route>
     </Switch>
   </Router>,

@@ -1,10 +1,21 @@
 const express = require('express');
 
-const jwt = require('jsonwebtoken');
-
 const router = express.Router();
 const authorization = require('../middlewares/jwt');
 const Stocks = require('../models/stock');
+
+// router.param('id', authorization, function(req, res, next, id) {
+//   const query = Stocks.findOne({ _id: id, userId: req.user._id });
+//   console.log('query mid', query);
+//   query.exec((err, id) => {
+//     if (err) return next(err);
+//     if (!id) return next(new Error("Can't find id."));
+
+//     req.id = id;
+//     console.log('req.id', req.id);
+//     return next();
+//   });
+// });
 
 router.get('/stocks', authorization, async (req, res) => {
   // console.log('req.headers',req.headers['x-access-token']);
@@ -16,16 +27,21 @@ router.get('/stocks', authorization, async (req, res) => {
   }
 });
 
-router.post('/stocks/newStock', async (req, res) => {
+router.post('/stocks/newStock', authorization, async (req, res) => {
   try {
-    const respond = await Stocks.findOne({ name: req.body.name });
+    console.log('req.user', req.user);
+    const respond = await Stocks.findOne({
+      name: req.body.name,
+      userId: req.user._id
+    });
     if (respond !== null) {
       return res
         .status(400)
         .json({ type: 'fail', message: 'Duplicate Stocks' });
     }
     const newStock = new Stocks({
-      name: req.body.name
+      name: req.body.name,
+      userId: req.user._id
     });
     await newStock.save();
     return res
@@ -36,12 +52,22 @@ router.post('/stocks/newStock', async (req, res) => {
   }
 });
 
-router.delete('/stocks/:id/delete', async (req, res) => {
+router.delete('/stocks/:id/delete', authorization, async (req, res) => {
   try {
-    await Stocks.deleteOne({ _id: req.params.id });
-    return res.status(202).redirect('/');
+    const user = await Stocks.findOne({
+      userId: req.user._id
+    });
+    console.log('user', user);
+    // res.status(200).redirect('/');
+    if (user) {
+      await Stocks.findOneAndRemove({
+        userId: req.user._id,
+        _id: req.params.id
+      });
+      res.status(200).json({ type: 'success', message: 'delete success' });
+    }
   } catch (error) {
-    return res.status(404).redirect('/');
+    res.status(404).json({ type: 'fail', message: error.message });
   }
 });
 

@@ -2,41 +2,53 @@ import React, { useState, useEffect } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import history from '../history';
 
-function Login() {
-  const [isLogin, setIsLogin] = useState(false);
+function Register() {
+  const [isRegister, setIsRegister] = useState(false);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const loginUser = () => {
-    fetch(`${document.location.origin}/api/v1/users/signin`, {
+  const registerUser = () => {
+    fetch(`${document.location.origin}/api/v1/users/register`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
       },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ name, email, password, confirmPassword })
     })
       .then(res => res.headers.get('x-access-token'))
       .then(data => {
         localStorage.setItem('data', JSON.stringify(data));
-        setIsLogin(true);
+        setIsRegister(true);
       })
       .catch(err => console.log(err));
   };
 
   useEffect(() => {
-    // const isToken = JSON.parse(localStorage.getItem('data'));
-    if (isLogin) {
+    if (isRegister) {
       history.push('/');
     }
-  }, [isLogin]);
+  }, [isRegister]);
 
   return (
     <div className="container mb-3 Login">
       <div className="row mt-t">
         <div className="col-md-6 m-auto">
           <div className="card card-body">
-            <h1 className="text-center mb-3"> Log In </h1>
-            <Form action="/api/v1/users/signin" method="POST">
+            <h1 className="text-center mb-3"> Register </h1>
+            <Form action="/api/v1/users/register" method="POST">
+              <FormGroup>
+                <Label htmlFor="name"> Username </Label>
+                <Input
+                  type="name"
+                  id="name"
+                  name="name"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                />
+              </FormGroup>
               <FormGroup>
                 <Label htmlFor="email"> Email </Label>
                 <Input
@@ -59,7 +71,18 @@ function Login() {
                   onChange={e => setPassword(e.target.value)}
                 />
               </FormGroup>
-              <Button color="success" size="lg" onClick={loginUser}>
+              <FormGroup>
+                <Label htmlFor="confirmPassword"> confirmPassword </Label>
+                <Input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  placeholder="Enter your confirmPassword"
+                  value={confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
+                />
+              </FormGroup>
+              <Button color="success" size="lg" onClick={registerUser}>
                 Submit
               </Button>
             </Form>
@@ -70,4 +93,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
