@@ -77877,7 +77877,8 @@ function Login() {
     value: email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
-    }
+    },
+    required: true
   })), _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
     htmlFor: "password"
   }, " Password "), _react.default.createElement(_reactstrap.Input, {
@@ -77888,7 +77889,8 @@ function Login() {
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
-    }
+    },
+    required: true
   })), _react.default.createElement(_reactstrap.Button, {
     color: "success",
     size: "lg",
@@ -78015,7 +78017,8 @@ function Register() {
     value: name,
     onChange: function onChange(e) {
       return setName(e.target.value);
-    }
+    },
+    required: true
   })), _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
     htmlFor: "email"
   }, " Email "), _react.default.createElement(_reactstrap.Input, {
@@ -78026,7 +78029,8 @@ function Register() {
     value: email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
-    }
+    },
+    required: true
   })), _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
     htmlFor: "password"
   }, " Password "), _react.default.createElement(_reactstrap.Input, {
@@ -78037,7 +78041,8 @@ function Register() {
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
-    }
+    },
+    required: true
   })), _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
     htmlFor: "confirmPassword"
   }, " confirmPassword "), _react.default.createElement(_reactstrap.Input, {
@@ -78048,12 +78053,19 @@ function Register() {
     value: confirmPassword,
     onChange: function onChange(e) {
       return setConfirmPassword(e.target.value);
-    }
+    },
+    required: true
   })), _react.default.createElement(_reactstrap.Button, {
     color: "success",
     size: "lg",
-    onClick: function onClick() {
-      return setIsRegister(true);
+    onClick: function onClick(e) {
+      e.preventDefault();
+
+      if (!e.target.checkValidity()) {
+        e.stopPropagation();
+      } else {
+        password !== confirmPassword ? alert('confirm your password') : setIsRegister(true);
+      }
     }
   }, "Submit"))))));
 }
@@ -78210,7 +78222,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61647" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49662" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

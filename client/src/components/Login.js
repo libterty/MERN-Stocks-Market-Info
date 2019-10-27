@@ -61,6 +61,7 @@ function Login() {
                   placeholder="Enter your email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -72,6 +73,7 @@ function Login() {
                   placeholder="Enter your password"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
+                  required
                 />
               </FormGroup>
               <Button
@@ -79,10 +81,11 @@ function Login() {
                 size="lg"
                 onClick={e => {
                   e.preventDefault();
-                  if (email === null || password === null) {
+                  if (!e.target.checkValidity()) {
                     e.stopPropagation();
+                  } else {
+                    setIsLogin(true);
                   }
-                  setIsLogin(true);
                 }}
               >
                 Submit

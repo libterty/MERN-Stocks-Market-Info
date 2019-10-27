@@ -56,6 +56,7 @@ function Register() {
                   placeholder="Enter your name"
                   value={name}
                   onChange={e => setName(e.target.value)}
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -67,6 +68,7 @@ function Register() {
                   placeholder="Enter your email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -78,6 +80,7 @@ function Register() {
                   placeholder="Enter your password"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -89,12 +92,22 @@ function Register() {
                   placeholder="Enter your confirmPassword"
                   value={confirmPassword}
                   onChange={e => setConfirmPassword(e.target.value)}
+                  required
                 />
               </FormGroup>
               <Button
                 color="success"
                 size="lg"
-                onClick={() => setIsRegister(true)}
+                onClick={e => {
+                  e.preventDefault();
+                  if (!e.target.checkValidity()) {
+                    e.stopPropagation();
+                  } else {
+                    password !== confirmPassword
+                      ? alert('confirm your password')
+                      : setIsRegister(true);
+                  }
+                }}
               >
                 Submit
               </Button>
