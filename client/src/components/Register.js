@@ -20,20 +20,16 @@ function Register() {
         body: JSON.stringify({ name, email, password, confirmPassword })
       })
         .then(res =>
-          res.status === 201 ? localStorage.setItem('data', JSON.stringify(res.headers.get('x-access-token'))) : res.json()
+          res.status === 201
+            ? localStorage.setItem(
+                'data',
+                JSON.stringify(res.headers.get('x-access-token'))
+              )
+            : res.json()
         )
         .then(json =>
-          typeof json === 'undefined'
-            ? setData(true)
-            : console.log(json)
+          typeof json === 'undefined' ? setData(true) : alert(json.message)
         );
-      // .then(res => res.headers.get('x-access-token'))
-      // .then(data => {
-      //   localStorage.setItem('data', JSON.stringify(data));
-      //   setIsRegister(true);
-      //   history.push('/');
-      // })
-      // .catch(err => console.log(err));
     }
   }, [isRegister]);
 
@@ -43,8 +39,6 @@ function Register() {
       setIsRegister(false);
     }
   }, [data]);
-
-  console.log('data', data);
 
   return (
     <div className="container mb-3 Login">

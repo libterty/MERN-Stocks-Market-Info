@@ -6,6 +6,7 @@ function Login() {
   const [isLogin, setIsLogin] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [data, setData] = useState(false);
 
   useEffect(() => {
     if (isLogin) {
@@ -16,15 +17,33 @@ function Login() {
         },
         body: JSON.stringify({ email, password })
       })
-        .then(res => res.headers.get('x-access-token'))
-        .then(data => {
-          localStorage.setItem('data', JSON.stringify(data));
-          // setIsLogin(true);
-          history.push('/');
-        })
-        .catch(err => console.log(err));
+        .then(res =>
+          res.status === 200
+            ? localStorage.setItem(
+                'data',
+                JSON.stringify(res.headers.get('x-access-token'))
+              )
+            : res.json()
+        )
+        .then(json =>
+          typeof json === 'undefined' ? setData(true) : alert(json.message)
+        );
+      // .then(res => res.headers.get('x-access-token'))
+      // .then(data => {
+      //   localStorage.setItem('data', JSON.stringify(data));
+      //   // setIsLogin(true);
+      //   history.push('/');
+      // })
+      // .catch(err => console.log(err));
     }
   }, [isLogin]);
+
+  useEffect(() => {
+    if (data) {
+      history.push('/');
+      setIsLogin(false);
+    }
+  }, [data]);
 
   return (
     <div className="container mb-3 Login">

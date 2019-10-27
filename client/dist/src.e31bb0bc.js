@@ -77818,6 +77818,11 @@ function Login() {
       password = _useState6[0],
       setPassword = _useState6[1];
 
+  var _useState7 = (0, _react.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      data = _useState8[0],
+      setData = _useState8[1];
+
   (0, _react.useEffect)(function () {
     if (isLogin) {
       fetch("".concat(document.location.origin, "/api/v1/users/signin"), {
@@ -77830,16 +77835,25 @@ function Login() {
           password: password
         })
       }).then(function (res) {
-        return res.headers.get('x-access-token');
-      }).then(function (data) {
-        localStorage.setItem('data', JSON.stringify(data)); // setIsLogin(true);
-
-        _history.default.push('/');
-      }).catch(function (err) {
-        return console.log(err);
-      });
+        return res.status === 200 ? localStorage.setItem('data', JSON.stringify(res.headers.get('x-access-token'))) : res.json();
+      }).then(function (json) {
+        return typeof json === 'undefined' ? setData(true) : alert(json.message);
+      }); // .then(res => res.headers.get('x-access-token'))
+      // .then(data => {
+      //   localStorage.setItem('data', JSON.stringify(data));
+      //   // setIsLogin(true);
+      //   history.push('/');
+      // })
+      // .catch(err => console.log(err));
     }
   }, [isLogin]);
+  (0, _react.useEffect)(function () {
+    if (data) {
+      _history.default.push('/');
+
+      setIsLogin(false);
+    }
+  }, [data]);
   return _react.default.createElement("div", {
     className: "container mb-3 Login"
   }, _react.default.createElement("div", {
@@ -77967,14 +77981,8 @@ function Register() {
       }).then(function (res) {
         return res.status === 201 ? localStorage.setItem('data', JSON.stringify(res.headers.get('x-access-token'))) : res.json();
       }).then(function (json) {
-        return typeof json === 'undefined' ? setData(true) : console.log(json);
-      }); // .then(res => res.headers.get('x-access-token'))
-      // .then(data => {
-      //   localStorage.setItem('data', JSON.stringify(data));
-      //   setIsRegister(true);
-      //   history.push('/');
-      // })
-      // .catch(err => console.log(err));
+        return typeof json === 'undefined' ? setData(true) : alert(json.message);
+      });
     }
   }, [isRegister]);
   (0, _react.useEffect)(function () {
@@ -77984,7 +77992,6 @@ function Register() {
       setIsRegister(false);
     }
   }, [data]);
-  console.log('data', data);
   return _react.default.createElement("div", {
     className: "container mb-3 Login"
   }, _react.default.createElement("div", {
@@ -78203,7 +78210,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52432" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61647" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
