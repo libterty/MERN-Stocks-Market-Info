@@ -68,7 +68,7 @@ function HomeHistory() {
   return (
     <div className="HomeHistory col-md-7">
       <div>NADSQ HISTORY</div>
-      <canvas id="historyChart" width="1600" height="800" />
+      <canvas id="historyChart" width="auto" height="auto" />
     </div>
   );
 }

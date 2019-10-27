@@ -11,7 +11,6 @@ const authorization = async (req, res, next) => {
   try {
     /** verify the token from user.model */
     const userInfo = jwt.verify(token, process.env.JWT_TOKEN);
-    // console.log('userInfo', userInfo);
     req.user = userInfo;
     next();
   } catch (error) {

@@ -13,8 +13,6 @@ import {
   Input,
   Button
 } from 'reactstrap';
-// import history from 'history';
-// import Headline from './Headline';
 import Logout from './Logout';
 
 function NavHeader() {
@@ -90,8 +88,6 @@ function NavHeader() {
       setIsShow(false);
     }
   }, [isShow]);
-
-  console.log('eventId', eventId);
 
   return (
     <Navbar color="faded" light>

@@ -5,26 +5,11 @@ const router = express.Router();
 const authorization = require('../middlewares/jwt');
 const Stocks = require('../models/stock');
 
-// router.param('id', authorization, function(req, res, next, id) {
-//   const query = Stocks.findOne({ _id: id, userId: req.user._id });
-//   console.log('query mid', query);
-//   query.exec((err, id) => {
-//     if (err) return next(err);
-//     if (!id) return next(new Error("Can't find id."));
-
-//     req.id = id;
-//     console.log('req.id', req.id);
-//     return next();
-//   });
-// });
-
 router.get('/stocks', authorization, async (req, res) => {
-  // console.log('req.headers',req.headers['x-access-token']);
-  // console.log('req.user', req.user)
   try {
     res.status(200).send(await Stocks.find({ userId: req.user._id }));
   } catch (error) {
-    console.log(error);
+    res.status(404).send('Oops something went wrong');
   }
 });
 
@@ -58,8 +43,6 @@ router.delete('/stocks/:id/delete', authorization, async (req, res) => {
     const user = await Stocks.findOne({
       userId: req.user._id
     });
-    console.log('user', user);
-    // res.status(200).redirect('/');
     if (user) {
       Stocks.findOne(
         {
