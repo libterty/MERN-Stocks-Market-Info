@@ -57856,109 +57856,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Container":"../../node_modules/reactstrap/es/Container.js","./Row":"../../node_modules/reactstrap/es/Row.js","./Col":"../../node_modules/reactstrap/es/Col.js","./Navbar":"../../node_modules/reactstrap/es/Navbar.js","./NavbarBrand":"../../node_modules/reactstrap/es/NavbarBrand.js","./NavbarToggler":"../../node_modules/reactstrap/es/NavbarToggler.js","./Nav":"../../node_modules/reactstrap/es/Nav.js","./NavItem":"../../node_modules/reactstrap/es/NavItem.js","./NavLink":"../../node_modules/reactstrap/es/NavLink.js","./Breadcrumb":"../../node_modules/reactstrap/es/Breadcrumb.js","./BreadcrumbItem":"../../node_modules/reactstrap/es/BreadcrumbItem.js","./Button":"../../node_modules/reactstrap/es/Button.js","./ButtonDropdown":"../../node_modules/reactstrap/es/ButtonDropdown.js","./ButtonGroup":"../../node_modules/reactstrap/es/ButtonGroup.js","./ButtonToolbar":"../../node_modules/reactstrap/es/ButtonToolbar.js","./Dropdown":"../../node_modules/reactstrap/es/Dropdown.js","./DropdownItem":"../../node_modules/reactstrap/es/DropdownItem.js","./DropdownMenu":"../../node_modules/reactstrap/es/DropdownMenu.js","./DropdownToggle":"../../node_modules/reactstrap/es/DropdownToggle.js","./Fade":"../../node_modules/reactstrap/es/Fade.js","./Badge":"../../node_modules/reactstrap/es/Badge.js","./Card":"../../node_modules/reactstrap/es/Card.js","./CardGroup":"../../node_modules/reactstrap/es/CardGroup.js","./CardDeck":"../../node_modules/reactstrap/es/CardDeck.js","./CardColumns":"../../node_modules/reactstrap/es/CardColumns.js","./CardBody":"../../node_modules/reactstrap/es/CardBody.js","./CardLink":"../../node_modules/reactstrap/es/CardLink.js","./CardFooter":"../../node_modules/reactstrap/es/CardFooter.js","./CardHeader":"../../node_modules/reactstrap/es/CardHeader.js","./CardImg":"../../node_modules/reactstrap/es/CardImg.js","./CardImgOverlay":"../../node_modules/reactstrap/es/CardImgOverlay.js","./Carousel":"../../node_modules/reactstrap/es/Carousel.js","./UncontrolledCarousel":"../../node_modules/reactstrap/es/UncontrolledCarousel.js","./CarouselControl":"../../node_modules/reactstrap/es/CarouselControl.js","./CarouselItem":"../../node_modules/reactstrap/es/CarouselItem.js","./CarouselIndicators":"../../node_modules/reactstrap/es/CarouselIndicators.js","./CarouselCaption":"../../node_modules/reactstrap/es/CarouselCaption.js","./CardSubtitle":"../../node_modules/reactstrap/es/CardSubtitle.js","./CardText":"../../node_modules/reactstrap/es/CardText.js","./CardTitle":"../../node_modules/reactstrap/es/CardTitle.js","./CustomFileInput":"../../node_modules/reactstrap/es/CustomFileInput.js","./CustomInput":"../../node_modules/reactstrap/es/CustomInput.js","./PopperContent":"../../node_modules/reactstrap/es/PopperContent.js","./PopperTargetHelper":"../../node_modules/reactstrap/es/PopperTargetHelper.js","./Popover":"../../node_modules/reactstrap/es/Popover.js","./UncontrolledPopover":"../../node_modules/reactstrap/es/UncontrolledPopover.js","./PopoverHeader":"../../node_modules/reactstrap/es/PopoverHeader.js","./PopoverBody":"../../node_modules/reactstrap/es/PopoverBody.js","./Progress":"../../node_modules/reactstrap/es/Progress.js","./Modal":"../../node_modules/reactstrap/es/Modal.js","./ModalHeader":"../../node_modules/reactstrap/es/ModalHeader.js","./ModalBody":"../../node_modules/reactstrap/es/ModalBody.js","./ModalFooter":"../../node_modules/reactstrap/es/ModalFooter.js","./Tooltip":"../../node_modules/reactstrap/es/Tooltip.js","./Table":"../../node_modules/reactstrap/es/Table.js","./ListGroup":"../../node_modules/reactstrap/es/ListGroup.js","./Form":"../../node_modules/reactstrap/es/Form.js","./FormFeedback":"../../node_modules/reactstrap/es/FormFeedback.js","./FormGroup":"../../node_modules/reactstrap/es/FormGroup.js","./FormText":"../../node_modules/reactstrap/es/FormText.js","./Input":"../../node_modules/reactstrap/es/Input.js","./InputGroup":"../../node_modules/reactstrap/es/InputGroup.js","./InputGroupAddon":"../../node_modules/reactstrap/es/InputGroupAddon.js","./InputGroupButtonDropdown":"../../node_modules/reactstrap/es/InputGroupButtonDropdown.js","./InputGroupText":"../../node_modules/reactstrap/es/InputGroupText.js","./Label":"../../node_modules/reactstrap/es/Label.js","./Media":"../../node_modules/reactstrap/es/Media.js","./Pagination":"../../node_modules/reactstrap/es/Pagination.js","./PaginationItem":"../../node_modules/reactstrap/es/PaginationItem.js","./PaginationLink":"../../node_modules/reactstrap/es/PaginationLink.js","./TabContent":"../../node_modules/reactstrap/es/TabContent.js","./TabPane":"../../node_modules/reactstrap/es/TabPane.js","./Jumbotron":"../../node_modules/reactstrap/es/Jumbotron.js","./Alert":"../../node_modules/reactstrap/es/Alert.js","./Toast":"../../node_modules/reactstrap/es/Toast.js","./ToastBody":"../../node_modules/reactstrap/es/ToastBody.js","./ToastHeader":"../../node_modules/reactstrap/es/ToastHeader.js","./Collapse":"../../node_modules/reactstrap/es/Collapse.js","./ListGroupItem":"../../node_modules/reactstrap/es/ListGroupItem.js","./ListGroupItemHeading":"../../node_modules/reactstrap/es/ListGroupItemHeading.js","./ListGroupItemText":"../../node_modules/reactstrap/es/ListGroupItemText.js","./UncontrolledAlert":"../../node_modules/reactstrap/es/UncontrolledAlert.js","./UncontrolledButtonDropdown":"../../node_modules/reactstrap/es/UncontrolledButtonDropdown.js","./UncontrolledCollapse":"../../node_modules/reactstrap/es/UncontrolledCollapse.js","./UncontrolledDropdown":"../../node_modules/reactstrap/es/UncontrolledDropdown.js","./UncontrolledTooltip":"../../node_modules/reactstrap/es/UncontrolledTooltip.js","./Spinner":"../../node_modules/reactstrap/es/Spinner.js","./utils":"../../node_modules/reactstrap/es/utils.js"}],"components/Headline.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function Headline() {
-  var _useState = (0, _react.useState)({}),
-      _useState2 = _slicedToArray(_useState, 2),
-      spy = _useState2[0],
-      setSpy = _useState2[1];
-
-  var _useState3 = (0, _react.useState)({}),
-      _useState4 = _slicedToArray(_useState3, 2),
-      dia = _useState4[0],
-      setDia = _useState4[1];
-
-  var _useState5 = (0, _react.useState)({}),
-      _useState6 = _slicedToArray(_useState5, 2),
-      fbt = _useState6[0],
-      setFbt = _useState6[1];
-
-  (0, _react.useEffect)(function () {
-    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=SPY&apikey=".concat("QYR46PG0LPZALS06")).then(function (res) {
-      return res.json();
-    }).then(function (json) {
-      return setSpy(json['Global Quote']);
-    });
-  }, []);
-  (0, _react.useEffect)(function () {
-    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=DIA&apikey=".concat("QYR46PG0LPZALS06")).then(function (res) {
-      return res.json();
-    }).then(function (json) {
-      return setDia(json['Global Quote']);
-    });
-  }, []);
-  (0, _react.useEffect)(function () {
-    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=FBT&apikey=".concat("QYR46PG0LPZALS06")).then(function (res) {
-      return res.json();
-    }).then(function (json) {
-      return setFbt(json['Global Quote']);
-    });
-  }, []);
-  console.log('spy', spy['10. change percent']);
-  return _react.default.createElement("div", {
-    className: "inline index-data"
-  }, _react.default.createElement("ul", {
-    className: "index_data-items"
-  }, _react.default.createElement("li", {
-    className: "index_data-item"
-  }, _react.default.createElement("a", {
-    href: "#!",
-    className: "index_data-item__link"
-  }, _react.default.createElement("span", {
-    className: "index_data-item__name"
-  }, "\u6A19\u6E96\u666E\u723E500\u6307\u6578"), parseFloat(spy['10. change percent']) > 0 ? _react.default.createElement("span", {
-    className: "index-data__item__change index-data__item__change--up"
-  }, "+".concat(spy['10. change percent'])) : _react.default.createElement("span", {
-    className: "index-data__item__change index-data__item__change--down"
-  }, "-".concat(spy['10. change percent'])))), _react.default.createElement("li", {
-    className: "index_data-item"
-  }, _react.default.createElement("a", {
-    href: "#!",
-    className: "index_data-item__link"
-  }, _react.default.createElement("span", {
-    className: "index_data-item__name"
-  }, "\u9053\u74CA\u5DE5\u696D\u5E73\u5747\u6307\u6578"), parseFloat(dia['10. change percent']) > 0 ? _react.default.createElement("span", {
-    className: "index-data__item__change index-data__item__change--up"
-  }, "+".concat(dia['10. change percent'])) : _react.default.createElement("span", {
-    className: "index-data__item__change index-data__item__change--down"
-  }, "-".concat(dia['10. change percent'])))), _react.default.createElement("li", {
-    className: "index_data-item"
-  }, _react.default.createElement("a", {
-    href: "#!",
-    className: "index_data-item__link"
-  }, _react.default.createElement("span", {
-    className: "index_data-item__name"
-  }, "\u7F8E\u570BNYSE\u6307\u6578"), parseFloat(fbt['10. change percent']) > 0 ? _react.default.createElement("span", {
-    className: "index-data__item__change index-data__item__change--up"
-  }, "+".concat(fbt['10. change percent'])) : _react.default.createElement("span", {
-    className: "index-data__item__change index-data__item__change--down"
-  }, "-".concat(fbt['10. change percent']))))));
-}
-
-var _default = Headline;
-exports.default = _default;
-},{"react":"../../node_modules/react/index.js"}],"history.js":[function(require,module,exports) {
+},{"./Container":"../../node_modules/reactstrap/es/Container.js","./Row":"../../node_modules/reactstrap/es/Row.js","./Col":"../../node_modules/reactstrap/es/Col.js","./Navbar":"../../node_modules/reactstrap/es/Navbar.js","./NavbarBrand":"../../node_modules/reactstrap/es/NavbarBrand.js","./NavbarToggler":"../../node_modules/reactstrap/es/NavbarToggler.js","./Nav":"../../node_modules/reactstrap/es/Nav.js","./NavItem":"../../node_modules/reactstrap/es/NavItem.js","./NavLink":"../../node_modules/reactstrap/es/NavLink.js","./Breadcrumb":"../../node_modules/reactstrap/es/Breadcrumb.js","./BreadcrumbItem":"../../node_modules/reactstrap/es/BreadcrumbItem.js","./Button":"../../node_modules/reactstrap/es/Button.js","./ButtonDropdown":"../../node_modules/reactstrap/es/ButtonDropdown.js","./ButtonGroup":"../../node_modules/reactstrap/es/ButtonGroup.js","./ButtonToolbar":"../../node_modules/reactstrap/es/ButtonToolbar.js","./Dropdown":"../../node_modules/reactstrap/es/Dropdown.js","./DropdownItem":"../../node_modules/reactstrap/es/DropdownItem.js","./DropdownMenu":"../../node_modules/reactstrap/es/DropdownMenu.js","./DropdownToggle":"../../node_modules/reactstrap/es/DropdownToggle.js","./Fade":"../../node_modules/reactstrap/es/Fade.js","./Badge":"../../node_modules/reactstrap/es/Badge.js","./Card":"../../node_modules/reactstrap/es/Card.js","./CardGroup":"../../node_modules/reactstrap/es/CardGroup.js","./CardDeck":"../../node_modules/reactstrap/es/CardDeck.js","./CardColumns":"../../node_modules/reactstrap/es/CardColumns.js","./CardBody":"../../node_modules/reactstrap/es/CardBody.js","./CardLink":"../../node_modules/reactstrap/es/CardLink.js","./CardFooter":"../../node_modules/reactstrap/es/CardFooter.js","./CardHeader":"../../node_modules/reactstrap/es/CardHeader.js","./CardImg":"../../node_modules/reactstrap/es/CardImg.js","./CardImgOverlay":"../../node_modules/reactstrap/es/CardImgOverlay.js","./Carousel":"../../node_modules/reactstrap/es/Carousel.js","./UncontrolledCarousel":"../../node_modules/reactstrap/es/UncontrolledCarousel.js","./CarouselControl":"../../node_modules/reactstrap/es/CarouselControl.js","./CarouselItem":"../../node_modules/reactstrap/es/CarouselItem.js","./CarouselIndicators":"../../node_modules/reactstrap/es/CarouselIndicators.js","./CarouselCaption":"../../node_modules/reactstrap/es/CarouselCaption.js","./CardSubtitle":"../../node_modules/reactstrap/es/CardSubtitle.js","./CardText":"../../node_modules/reactstrap/es/CardText.js","./CardTitle":"../../node_modules/reactstrap/es/CardTitle.js","./CustomFileInput":"../../node_modules/reactstrap/es/CustomFileInput.js","./CustomInput":"../../node_modules/reactstrap/es/CustomInput.js","./PopperContent":"../../node_modules/reactstrap/es/PopperContent.js","./PopperTargetHelper":"../../node_modules/reactstrap/es/PopperTargetHelper.js","./Popover":"../../node_modules/reactstrap/es/Popover.js","./UncontrolledPopover":"../../node_modules/reactstrap/es/UncontrolledPopover.js","./PopoverHeader":"../../node_modules/reactstrap/es/PopoverHeader.js","./PopoverBody":"../../node_modules/reactstrap/es/PopoverBody.js","./Progress":"../../node_modules/reactstrap/es/Progress.js","./Modal":"../../node_modules/reactstrap/es/Modal.js","./ModalHeader":"../../node_modules/reactstrap/es/ModalHeader.js","./ModalBody":"../../node_modules/reactstrap/es/ModalBody.js","./ModalFooter":"../../node_modules/reactstrap/es/ModalFooter.js","./Tooltip":"../../node_modules/reactstrap/es/Tooltip.js","./Table":"../../node_modules/reactstrap/es/Table.js","./ListGroup":"../../node_modules/reactstrap/es/ListGroup.js","./Form":"../../node_modules/reactstrap/es/Form.js","./FormFeedback":"../../node_modules/reactstrap/es/FormFeedback.js","./FormGroup":"../../node_modules/reactstrap/es/FormGroup.js","./FormText":"../../node_modules/reactstrap/es/FormText.js","./Input":"../../node_modules/reactstrap/es/Input.js","./InputGroup":"../../node_modules/reactstrap/es/InputGroup.js","./InputGroupAddon":"../../node_modules/reactstrap/es/InputGroupAddon.js","./InputGroupButtonDropdown":"../../node_modules/reactstrap/es/InputGroupButtonDropdown.js","./InputGroupText":"../../node_modules/reactstrap/es/InputGroupText.js","./Label":"../../node_modules/reactstrap/es/Label.js","./Media":"../../node_modules/reactstrap/es/Media.js","./Pagination":"../../node_modules/reactstrap/es/Pagination.js","./PaginationItem":"../../node_modules/reactstrap/es/PaginationItem.js","./PaginationLink":"../../node_modules/reactstrap/es/PaginationLink.js","./TabContent":"../../node_modules/reactstrap/es/TabContent.js","./TabPane":"../../node_modules/reactstrap/es/TabPane.js","./Jumbotron":"../../node_modules/reactstrap/es/Jumbotron.js","./Alert":"../../node_modules/reactstrap/es/Alert.js","./Toast":"../../node_modules/reactstrap/es/Toast.js","./ToastBody":"../../node_modules/reactstrap/es/ToastBody.js","./ToastHeader":"../../node_modules/reactstrap/es/ToastHeader.js","./Collapse":"../../node_modules/reactstrap/es/Collapse.js","./ListGroupItem":"../../node_modules/reactstrap/es/ListGroupItem.js","./ListGroupItemHeading":"../../node_modules/reactstrap/es/ListGroupItemHeading.js","./ListGroupItemText":"../../node_modules/reactstrap/es/ListGroupItemText.js","./UncontrolledAlert":"../../node_modules/reactstrap/es/UncontrolledAlert.js","./UncontrolledButtonDropdown":"../../node_modules/reactstrap/es/UncontrolledButtonDropdown.js","./UncontrolledCollapse":"../../node_modules/reactstrap/es/UncontrolledCollapse.js","./UncontrolledDropdown":"../../node_modules/reactstrap/es/UncontrolledDropdown.js","./UncontrolledTooltip":"../../node_modules/reactstrap/es/UncontrolledTooltip.js","./Spinner":"../../node_modules/reactstrap/es/Spinner.js","./utils":"../../node_modules/reactstrap/es/utils.js"}],"history.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58066,10 +57964,6 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactstrap = require("reactstrap");
-
-var _history = _interopRequireDefault(require("history"));
-
-var _Headline = _interopRequireDefault(require("./Headline"));
 
 var _Logout = _interopRequireDefault(require("./Logout"));
 
@@ -58260,7 +58154,7 @@ function NavHeader() {
 
 var _default = NavHeader;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","history":"../../node_modules/history/esm/history.js","./Headline":"components/Headline.js","./Logout":"components/Logout.js"}],"../../node_modules/moment/moment.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./Logout":"components/Logout.js"}],"../../node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 //! moment.js
@@ -77924,30 +77818,26 @@ function Login() {
       password = _useState6[0],
       setPassword = _useState6[1];
 
-  var loginUser = function loginUser() {
-    fetch("".concat(document.location.origin, "/api/v1/users/signin"), {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
-    }).then(function (res) {
-      return res.headers.get('x-access-token');
-    }).then(function (data) {
-      localStorage.setItem('data', JSON.stringify(data));
-      setIsLogin(true);
-    }).catch(function (err) {
-      return console.log(err);
-    });
-  };
-
   (0, _react.useEffect)(function () {
-    // const isToken = JSON.parse(localStorage.getItem('data'));
     if (isLogin) {
-      _history.default.push('/');
+      fetch("".concat(document.location.origin, "/api/v1/users/signin"), {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      }).then(function (res) {
+        return res.headers.get('x-access-token');
+      }).then(function (data) {
+        localStorage.setItem('data', JSON.stringify(data)); // setIsLogin(true);
+
+        _history.default.push('/');
+      }).catch(function (err) {
+        return console.log(err);
+      });
     }
   }, [isLogin]);
   return _react.default.createElement("div", {
@@ -77988,7 +77878,15 @@ function Login() {
   })), _react.default.createElement(_reactstrap.Button, {
     color: "success",
     size: "lg",
-    onClick: loginUser
+    onClick: function onClick(e) {
+      e.preventDefault();
+
+      if (email === null || password === null) {
+        e.stopPropagation();
+      }
+
+      setIsLogin(true);
+    }
   }, "Submit"))))));
 }
 
@@ -78048,33 +77946,45 @@ function Register() {
       confirmPassword = _useState10[0],
       setConfirmPassword = _useState10[1];
 
-  var registerUser = function registerUser() {
-    fetch("".concat(document.location.origin, "/api/v1/users/register"), {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword
-      })
-    }).then(function (res) {
-      return res.headers.get('x-access-token');
-    }).then(function (data) {
-      localStorage.setItem('data', JSON.stringify(data));
-      setIsRegister(true);
-    }).catch(function (err) {
-      return console.log(err);
-    });
-  };
+  var _useState11 = (0, _react.useState)(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      data = _useState12[0],
+      setData = _useState12[1];
 
   (0, _react.useEffect)(function () {
     if (isRegister) {
-      _history.default.push('/');
+      fetch("".concat(document.location.origin, "/api/v1/users/register"), {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword
+        })
+      }).then(function (res) {
+        return res.status === 201 ? localStorage.setItem('data', JSON.stringify(res.headers.get('x-access-token'))) : res.json();
+      }).then(function (json) {
+        return typeof json === 'undefined' ? setData(true) : console.log(json);
+      }); // .then(res => res.headers.get('x-access-token'))
+      // .then(data => {
+      //   localStorage.setItem('data', JSON.stringify(data));
+      //   setIsRegister(true);
+      //   history.push('/');
+      // })
+      // .catch(err => console.log(err));
     }
   }, [isRegister]);
+  (0, _react.useEffect)(function () {
+    if (data) {
+      _history.default.push('/');
+
+      setIsRegister(false);
+    }
+  }, [data]);
+  console.log('data', data);
   return _react.default.createElement("div", {
     className: "container mb-3 Login"
   }, _react.default.createElement("div", {
@@ -78135,7 +78045,9 @@ function Register() {
   })), _react.default.createElement(_reactstrap.Button, {
     color: "success",
     size: "lg",
-    onClick: registerUser
+    onClick: function onClick() {
+      return setIsRegister(true);
+    }
   }, "Submit"))))));
 }
 
@@ -78247,9 +78159,7 @@ _reactDom.default.render(_react.default.createElement(_reactRouterDom.Router, {
 }, _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
   exact: true,
   path: "/"
-}, jwt === null ? _react.default.createElement(_reactRouterDom.Redirect, {
-  to: "/users/login"
-}) : _react.default.createElement(_App.default, null)), _react.default.createElement(_reactRouterDom.Route, {
+}, _react.default.createElement(_App.default, null)), _react.default.createElement(_reactRouterDom.Route, {
   exact: true,
   path: "/stocks/:symbol"
 }, jwt === null ? _react.default.createElement(_reactRouterDom.Redirect, {
@@ -78293,7 +78203,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64847" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52432" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

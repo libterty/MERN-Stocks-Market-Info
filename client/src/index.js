@@ -16,7 +16,8 @@ ReactDOM.render(
   <Router history={history}>
     <Switch>
       <Route exact path="/">
-        {jwt === null ? <Redirect to="/users/login" /> : <App />}
+        {/* {jwt === null ? <Redirect to="/users/login" /> : <App />} */}
+        <App />
       </Route>
       <Route exact path="/stocks/:symbol">
         {jwt === null ? <Redirect to="/users/login" /> : <StockItem />}

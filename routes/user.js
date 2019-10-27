@@ -40,32 +40,32 @@ router.post('/register', async (req, res) => {
     const { name, email, password, confirmPassword } = req.body;
     if (!name || !email || !password || !confirmPassword) {
       return res
-        .status(400)
+        .status(404)
         .json({ type: 'fail', message: 'Please complete all the form' });
     }
 
     if (password.length < 6) {
       return res
-        .status(400)
+        .status(404)
         .json({ type: 'fail', message: 'Password too short' });
     }
 
     if (password.length > 16) {
       return res
-        .status(400)
+        .status(404)
         .json({ type: 'fail', message: 'Password too long' });
     }
 
     if (password !== confirmPassword) {
       return res
-        .status(400)
+        .status(404)
         .json({ type: 'fail', message: 'Make sure submit correct password' });
     }
 
     const user = await User.findOne({ email });
     if (user) {
       return res
-        .status(400)
+        .status(404)
         .json({ type: 'fail', message: 'Email already in use' });
     }
     const newUser = new User({

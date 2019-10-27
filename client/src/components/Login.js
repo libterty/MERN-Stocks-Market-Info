@@ -7,26 +7,22 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const loginUser = () => {
-    fetch(`${document.location.origin}/api/v1/users/signin`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({ email, password })
-    })
-      .then(res => res.headers.get('x-access-token'))
-      .then(data => {
-        localStorage.setItem('data', JSON.stringify(data));
-        setIsLogin(true);
-      })
-      .catch(err => console.log(err));
-  };
-
   useEffect(() => {
-    // const isToken = JSON.parse(localStorage.getItem('data'));
     if (isLogin) {
-      history.push('/');
+      fetch(`${document.location.origin}/api/v1/users/signin`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      })
+        .then(res => res.headers.get('x-access-token'))
+        .then(data => {
+          localStorage.setItem('data', JSON.stringify(data));
+          // setIsLogin(true);
+          history.push('/');
+        })
+        .catch(err => console.log(err));
     }
   }, [isLogin]);
 
@@ -59,7 +55,17 @@ function Login() {
                   onChange={e => setPassword(e.target.value)}
                 />
               </FormGroup>
-              <Button color="success" size="lg" onClick={loginUser}>
+              <Button
+                color="success"
+                size="lg"
+                onClick={e => {
+                  e.preventDefault();
+                  if (email === null || password === null) {
+                    e.stopPropagation();
+                  }
+                  setIsLogin(true);
+                }}
+              >
                 Submit
               </Button>
             </Form>

@@ -8,28 +8,43 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
-  const registerUser = () => {
-    fetch(`${document.location.origin}/api/v1/users/register`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({ name, email, password, confirmPassword })
-    })
-      .then(res => res.headers.get('x-access-token'))
-      .then(data => {
-        localStorage.setItem('data', JSON.stringify(data));
-        setIsRegister(true);
-      })
-      .catch(err => console.log(err));
-  };
+  const [data, setData] = useState(false);
 
   useEffect(() => {
     if (isRegister) {
-      history.push('/');
+      fetch(`${document.location.origin}/api/v1/users/register`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password, confirmPassword })
+      })
+        .then(res =>
+          res.status === 201 ? localStorage.setItem('data', JSON.stringify(res.headers.get('x-access-token'))) : res.json()
+        )
+        .then(json =>
+          typeof json === 'undefined'
+            ? setData(true)
+            : console.log(json)
+        );
+      // .then(res => res.headers.get('x-access-token'))
+      // .then(data => {
+      //   localStorage.setItem('data', JSON.stringify(data));
+      //   setIsRegister(true);
+      //   history.push('/');
+      // })
+      // .catch(err => console.log(err));
     }
   }, [isRegister]);
+
+  useEffect(() => {
+    if (data) {
+      history.push('/');
+      setIsRegister(false);
+    }
+  }, [data]);
+
+  console.log('data', data);
 
   return (
     <div className="container mb-3 Login">
@@ -82,7 +97,11 @@ function Register() {
                   onChange={e => setConfirmPassword(e.target.value)}
                 />
               </FormGroup>
-              <Button color="success" size="lg" onClick={registerUser}>
+              <Button
+                color="success"
+                size="lg"
+                onClick={() => setIsRegister(true)}
+              >
                 Submit
               </Button>
             </Form>
