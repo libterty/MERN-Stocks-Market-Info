@@ -26,6 +26,7 @@ function NavHeader() {
   const [isShow, setIsShow] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [isCreate, setIsCreate] = useState(false);
+  const [eventId, setEventId] = useState('');
 
   useEffect(() => {
     fetch(`${document.location.origin}/api/v1/stocks`, {
@@ -52,6 +53,7 @@ function NavHeader() {
         .then(json => {
           setUpdate(json);
           setIsShow(true);
+          setIsCreate(false);
           setName('');
         });
     }
@@ -59,15 +61,23 @@ function NavHeader() {
 
   useEffect(() => {
     if (isDelete) {
-      fetch(`http://localhost:3002/api/v1/stocks/:id/`, {
-        method: 'post',
+      const id = eventId
+        .replace(/^http\:\/\/localhost\:3002\/api\/v1\/stocks\//, '')
+        .replace(/\/delete\?_method\=DELETE$/, '');
+      fetch(`http://localhost:3002/api/v1/stocks/${id}/delete`, {
+        method: 'DELETE',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
           'x-access-token': JSON.parse(localStorage.getItem('data'))
         }
       })
-        .then(res => console.log(res))
+        .then(res =>
+          res.status === 204
+            ? alert('Delte Success')
+            : alert('Something went wrong')
+        )
+        .then(() => setUpdate({ message: 'success' }))
         .catch(err => console.log(err));
     }
   }, [isDelete]);
@@ -80,6 +90,8 @@ function NavHeader() {
       setIsShow(false);
     }
   }, [isShow]);
+
+  console.log('eventId', eventId);
 
   return (
     <Navbar color="faded" light>
@@ -120,15 +132,19 @@ function NavHeader() {
             return (
               <div className="main" key={stock._id}>
                 <Form
+                  action={`api/v1/stocks/${stock._id}/delete?_method=DELETE`}
                   method="POST"
-                  action={`api/v1/stocks/${stock._id}/?_method=DELETE`}
                 >
                   <Input type="hidden" name="_method" value="DELETE" />
                   <Button
                     className="fas fa-minus-circle"
                     color="danger"
                     type="submit"
-                    onClick={() => setIsDelete(true)}
+                    onClick={e => {
+                      e.preventDefault();
+                      setEventId(e.target.parentElement.action);
+                      setIsDelete(true);
+                    }}
                   />
                 </Form>
                 <NavItem className="main">
@@ -136,10 +152,7 @@ function NavHeader() {
                     href={`/stocks/${stock.name}`}
                     className="create-item"
                   >
-                    <div
-                      className="stock-item"
-                      style={{ paddingLeft: '0.5rem;' }}
-                    >
+                    <div className="stock-item">
                       <span>{stock.name}</span>
                     </div>
                   </NavLink>

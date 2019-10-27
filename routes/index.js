@@ -53,7 +53,7 @@ router.post('/stocks/newStock', authorization, async (req, res) => {
   }
 });
 
-router.delete('/stocks/:id/', authorization, async (req, res) => {
+router.delete('/stocks/:id/delete', authorization, async (req, res) => {
   try {
     const user = await Stocks.findOne({
       userId: req.user._id

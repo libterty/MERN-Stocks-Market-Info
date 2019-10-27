@@ -58019,6 +58019,11 @@ function NavHeader() {
       isCreate = _useState14[0],
       setIsCreate = _useState14[1];
 
+  var _useState15 = (0, _react.useState)(''),
+      _useState16 = _slicedToArray(_useState15, 2),
+      eventId = _useState16[0],
+      setEventId = _useState16[1];
+
   (0, _react.useEffect)(function () {
     fetch("".concat(document.location.origin, "/api/v1/stocks"), {
       headers: {
@@ -58047,21 +58052,27 @@ function NavHeader() {
       }).then(function (json) {
         setUpdate(json);
         setIsShow(true);
+        setIsCreate(false);
         setName('');
       });
     }
   }, [isCreate]);
   (0, _react.useEffect)(function () {
     if (isDelete) {
-      fetch("http://localhost:3002/api/v1/stocks/:id/", {
-        method: 'post',
+      var id = eventId.replace(/^http\:\/\/localhost\:3002\/api\/v1\/stocks\//, '').replace(/\/delete\?_method\=DELETE$/, '');
+      fetch("http://localhost:3002/api/v1/stocks/".concat(id, "/delete"), {
+        method: 'DELETE',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
           'x-access-token': JSON.parse(localStorage.getItem('data'))
         }
       }).then(function (res) {
-        return console.log(res);
+        return res.status === 204 ? alert('Delte Success') : alert('Something went wrong');
+      }).then(function () {
+        return setUpdate({
+          message: 'success'
+        });
       }).catch(function (err) {
         return console.log(err);
       });
@@ -58078,6 +58089,7 @@ function NavHeader() {
       setIsShow(false);
     }
   }, [isShow]);
+  console.log('eventId', eventId);
   return _react.default.createElement(_reactstrap.Navbar, {
     color: "faded",
     light: true
@@ -58125,8 +58137,8 @@ function NavHeader() {
       className: "main",
       key: stock._id
     }, _react.default.createElement(_reactstrap.Form, {
-      method: "POST",
-      action: "api/v1/stocks/".concat(stock._id, "/?_method=DELETE")
+      action: "api/v1/stocks/".concat(stock._id, "/delete?_method=DELETE"),
+      method: "POST"
     }, _react.default.createElement(_reactstrap.Input, {
       type: "hidden",
       name: "_method",
@@ -58135,8 +58147,10 @@ function NavHeader() {
       className: "fas fa-minus-circle",
       color: "danger",
       type: "submit",
-      onClick: function onClick() {
-        return setIsDelete(true);
+      onClick: function onClick(e) {
+        e.preventDefault();
+        setEventId(e.target.parentElement.action);
+        setIsDelete(true);
       }
     })), _react.default.createElement(_reactstrap.NavItem, {
       className: "main"
@@ -58144,10 +58158,7 @@ function NavHeader() {
       href: "/stocks/".concat(stock.name),
       className: "create-item"
     }, _react.default.createElement("div", {
-      className: "stock-item",
-      style: {
-        paddingLeft: '0.5rem;'
-      }
+      className: "stock-item"
     }, _react.default.createElement("span", null, stock.name)))));
   }), _react.default.createElement(_Logout.default, null))));
 }
@@ -77897,11 +77908,11 @@ function Login() {
     onClick: function onClick(e) {
       e.preventDefault();
 
-      if (email === null || password === null) {
+      if (!e.target.checkValidity()) {
         e.stopPropagation();
+      } else {
+        setIsLogin(true);
       }
-
-      setIsLogin(true);
     }
   }, "Submit"))))));
 }
@@ -78222,7 +78233,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49662" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58742" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
