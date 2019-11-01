@@ -19,7 +19,10 @@ router.post('/signin', async (req, res) => {
     }
     const token = await jwt.sign(
       {
-        _id: user._id
+        _id: user._id,
+        iat: Date.now(),
+        name: user.name,
+        blacklist: false
       },
       process.env.JWT_TOKEN,
       { expiresIn: '7d' },
@@ -84,7 +87,10 @@ router.post('/register', async (req, res) => {
           .then(async user => {
             const token = await jwt.sign(
               {
-                _id: user._id
+                _id: user._id,
+                iat: Date.now(),
+                name: user.name,
+                blacklist: false
               },
               process.env.JWT_TOKEN,
               { expiresIn: '7d' },
@@ -111,6 +117,9 @@ router.get('/logout', authorization, async (req, res) => {
     if (!user) {
       return res.status(400).json({ type: 'fail', message: 'Bad Request' });
     }
+    console.log('req.user.blacklist before', req.user);
+    req.user.blacklist = true;
+    console.log('req.user.blacklist after', req.user);
     return res
       .status(200)
       .json({ type: 'success', message: 'You have success logout' });

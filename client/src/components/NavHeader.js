@@ -89,6 +89,8 @@ function NavHeader() {
     }
   }, [isShow]);
 
+  console.log('stocks', stocks);
+
   return (
     <Navbar color="faded" light>
       <NavbarBrand href="/" className="mr-auto">

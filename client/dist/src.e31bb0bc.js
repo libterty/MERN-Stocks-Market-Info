@@ -58089,6 +58089,7 @@ function NavHeader() {
       setIsShow(false);
     }
   }, [isShow]);
+  console.log('stocks', stocks);
   return _react.default.createElement(_reactstrap.Navbar, {
     color: "faded",
     light: true
@@ -77776,7 +77777,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function App() {
   return _react.default.createElement("div", {
     className: "App"
-  }, _react.default.createElement(_NavHeader.default, null), _react.default.createElement(_Headline.default, null), _react.default.createElement(_HomeStock.default, null));
+  }, _react.default.createElement(_NavHeader.default, null), _react.default.createElement(_HomeStock.default, null));
 }
 
 var _default = App;
@@ -78336,7 +78337,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49192" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54605" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

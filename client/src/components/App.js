@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <NavHeader />
-      <Headline />
+      {/* <Headline /> */}
       <HomeStock />
     </div>
   );
