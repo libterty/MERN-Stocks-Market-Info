@@ -4,14 +4,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const methodOverride = require('method-override');
 const databaseConnect = require('./database');
+const connectRedis = require('./redis');
 
 const app = express();
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 const port = process.env.PORT || 3002;
+const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
 
 databaseConnect();
+connectRedis(REDIS_URL);
+
 app.use(
   cors({
     origin: true

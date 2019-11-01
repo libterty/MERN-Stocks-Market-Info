@@ -12,7 +12,8 @@
         "build-client": "npm run clean && parcel build client/src/index.html --out-dir client/dist",
         "dev-client": "npm run clean && parcel client/src/index.html --out-dir client/dist",
         "clean": "rm -rf .cache client/dist",
-        "dev-server": "nodemon index.js"
+        "dev-server": "npm run redis && cross-env ENV='development' nodemon index.js",
+        "redis": "redis-server --daemonize yes"
     },
     "keywords": [],
     "author": "",
@@ -81,6 +82,7 @@
         "react": "^16.10.2",
         "react-dom": "^16.10.2",
         "react-router-dom": "^5.1.2",
-        "reactstrap": "^8.1.1"
+        "reactstrap": "^8.1.1",
+        "redis": "^2.8.0"
     }
 }
