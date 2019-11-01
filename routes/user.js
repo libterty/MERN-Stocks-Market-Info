@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const authorization = require('../middlewares/jwt');
 const User = require('../models/user');
+const BlackListToken = require('../redis/BlackList');
 
 // Signin User
 router.post('/signin', async (req, res) => {
@@ -112,14 +113,13 @@ router.post('/register', async (req, res) => {
 
 // logout User
 router.get('/logout', authorization, async (req, res) => {
+  // console.log('check header in router logout', req.header('x-access-token'));
   try {
     const user = await User.findOne({ _id: req.user._id });
     if (!user) {
       return res.status(400).json({ type: 'fail', message: 'Bad Request' });
     }
-    console.log('req.user.blacklist before', req.user);
-    req.user.blacklist = true;
-    console.log('req.user.blacklist after', req.user);
+    await BlackListToken.addToList(req.header('x-access-token'));
     return res
       .status(200)
       .json({ type: 'success', message: 'You have success logout' });

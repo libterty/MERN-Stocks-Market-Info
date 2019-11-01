@@ -11,8 +11,8 @@ const authorization = async (req, res, next) => {
   }
   try {
     const userInfo = jwt.verify(token, process.env.JWT_TOKEN);
-    console.log('userInfo', userInfo);
-    console.log('in try req', req);
+    // console.log('userInfo', userInfo);
+    // console.log('in try req', req);
     if (userInfo.blacklist) {
       return res
         .status(400)
