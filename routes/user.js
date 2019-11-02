@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const Redis = require('redis').createClient();
 const authorization = require('../middlewares/jwt');
 const User = require('../models/user');
-const BlackListToken = require('../redis/BlackList');
 
 // Signin User
 router.post('/signin', async (req, res) => {
@@ -114,12 +113,13 @@ router.post('/register', async (req, res) => {
 
 // logout User
 router.get('/logout', authorization, async (req, res) => {
-  // console.log('check header in router logout', req.header('x-access-token'));
   try {
     const user = await User.findOne({ _id: req.user._id });
+
     if (!user) {
       return res.status(400).json({ type: 'fail', message: 'Bad Request' });
     }
+
     await Redis.lpush('auth', req.header('x-access-token'));
     return res
       .status(200)
