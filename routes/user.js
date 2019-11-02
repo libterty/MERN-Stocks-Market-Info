@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Redis = require('redis').createClient();
 const authorization = require('../middlewares/jwt');
 const User = require('../models/user');
 const BlackListToken = require('../redis/BlackList');
@@ -119,7 +120,7 @@ router.get('/logout', authorization, async (req, res) => {
     if (!user) {
       return res.status(400).json({ type: 'fail', message: 'Bad Request' });
     }
-    await BlackListToken.addToList(req.header('x-access-token'));
+    await Redis.lpush('auth', req.header('x-access-token'));
     return res
       .status(200)
       .json({ type: 'success', message: 'You have success logout' });
