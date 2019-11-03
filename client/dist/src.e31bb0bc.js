@@ -58204,21 +58204,21 @@ function Headline() {
       setFbt = _useState6[1];
 
   (0, _react.useEffect)(function () {
-    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=SPY&apikey=".concat("QYR46PG0LPZALS06")).then(function (res) {
+    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=SPY&apikey=".concat(undefined)).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setSpy(json['Global Quote']);
     });
   }, []);
   (0, _react.useEffect)(function () {
-    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=DIA&apikey=".concat("QYR46PG0LPZALS06")).then(function (res) {
+    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=DIA&apikey=".concat(undefined)).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setDia(json['Global Quote']);
     });
   }, []);
   (0, _react.useEffect)(function () {
-    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=FBT&apikey=".concat("QYR46PG0LPZALS06")).then(function (res) {
+    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=FBT&apikey=".concat(undefined)).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setFbt(json['Global Quote']);
@@ -77590,7 +77590,7 @@ function HomeHistory() {
       setHistory = _useState2[1];
 
   (0, _react.useEffect)(function () {
-    fetch("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=NDAQ&apikey=".concat("QYR46PG0LPZALS06", "&datatype=json")).then(function (res) {
+    fetch("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=NDAQ&apikey=".concat(undefined, "&datatype=json")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setHistory(json['Weekly Adjusted Time Series']);
@@ -77673,7 +77673,7 @@ function HomeNews() {
 
   (0, _react.useEffect)(function () {
     var q = "".concat(new Date().getFullYear(), "-").concat(new Date().getMonth() + 1, "-").concat(new Date().getDate());
-    fetch("https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=".concat("0724b4680bed44d0a54b940c0c5f1e88")).then(function (res) {
+    fetch("https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=".concat(undefined)).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setArticles(json.articles);
@@ -77735,7 +77735,7 @@ function HomeStock() {
       setItem = _useState2[1];
 
   (0, _react.useEffect)(function () {
-    fetch("https://api.worldtradingdata.com/api/v1/stock?symbol=NDAQ&api_token=".concat("GtGyE3sXB7lFVgz1oXV8NLMMVUaF1KlzTPNCwMi2ISijITtJeArQEUCfoK92")).then(function (res) {
+    fetch("https://api.worldtradingdata.com/api/v1/stock?symbol=NDAQ&api_token=".concat(undefined)).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setItem(json.data);
@@ -77816,7 +77816,7 @@ function StockItemHistory() {
 
   (0, _react.useEffect)(function () {
     var indexSymbol = document.location.pathname.replace(/\/stocks\//, '');
-    fetch("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=".concat(indexSymbol, "&apikey=").concat("QYR46PG0LPZALS06", "&datatype=json")).then(function (res) {
+    fetch("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=".concat(indexSymbol, "&apikey=").concat(undefined, "&datatype=json")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setHistory(json['Weekly Adjusted Time Series']);
@@ -78337,7 +78337,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63159" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58054" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
