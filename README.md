@@ -1,6 +1,11 @@
 # Stock Markets Inforamtion with Real Time Data and History Chart
 
-- MERN design
+<div style="display:inline">
+  <img src="https://img.shields.io/docker/cloud/automated/libterty8186/stocksapi?style=plastic" alt="docker-automated">
+  <img src="https://img.shields.io/docker/cloud/build/libterty8186/stocksapi" alt="Docker Cloud Build Status" style="padding-left:0.25rem;max-height:18px;">
+</div>
+
+- Full stack MERN design
 - User can go to each Index page
 - User can observe every important index in Home page
 - User can observe Nadsaq Real Time data and History Data in Home page
