@@ -1,27 +1,29 @@
 /* eslint-disable no-undef */
 const request = require('supertest');
 const nanoid = require('nanoid');
-const Redis = require('redis').createClient();
-const server = require('../index');
+// const Redis = require('redis').createClient();
+// const server = require('../index');
 
-async function shutdown() {
-  await new Promise(resolve => {
-    Redis.end(() => {
-      resolve();
-    });
-  });
-  await new Promise(resolve => setImmediate(resolve));
-}
+const BASE_URL = 'http://localhost:3002';
+
+// async function shutdown() {
+//   await new Promise(resolve => {
+//     Redis.end(() => {
+//       resolve();
+//     });
+//   });
+//   await new Promise(resolve => setImmediate(resolve));
+// }
 
 describe('User function API testing', () => {
-  afterEach(async () => {
-    await server.close();
-    shutdown();
-  });
+  // afterEach(async () => {
+  //   await server.close();
+  //   shutdown();
+  // });
 
   describe('POST /signin', () => {
     it('should return token and json char', async done => {
-      const res = await request(server)
+      const res = await request(BASE_URL)
         .post('/api/v1/users/register')
         .send({
           name: 'example10',
@@ -36,7 +38,7 @@ describe('User function API testing', () => {
       done();
     });
     it('should return token and json char', async done => {
-      const res = await request(server)
+      const res = await request(BASE_URL)
         .post('/api/v1/users/signin')
         .send({ email: 'example10@example.com', password: '12345678' })
         .set('Accept', 'application/json');
@@ -46,7 +48,7 @@ describe('User function API testing', () => {
       done();
     });
     it('should return error msg with wrong mail input', async done => {
-      const res = await request(server)
+      const res = await request(BASE_URL)
         .post('/api/v1/users/signin')
         .send({ email: 'example18@example.com', password: '12345678' })
         .set('Accept', 'application/json');
@@ -56,7 +58,7 @@ describe('User function API testing', () => {
       done();
     });
     it('should return error msg with wrong passowrd input', async done => {
-      const res = await request(server)
+      const res = await request(BASE_URL)
         .post('/api/v1/users/signin')
         .send({ email: 'example8@example.com', password: '1:3928:32:8' })
         .set('Accept', 'application/json');
@@ -69,7 +71,7 @@ describe('User function API testing', () => {
 
   describe('POST /register', () => {
     it('should return token and json char', async done => {
-      const res = await request(server)
+      const res = await request(BASE_URL)
         .post('/api/v1/users/register')
         .send({
           name: `${nanoid(5)}`,
@@ -84,7 +86,7 @@ describe('User function API testing', () => {
       done();
     });
     it('should return error msg with non input', async done => {
-      const res = await request(server)
+      const res = await request(BASE_URL)
         .post('/api/v1/users/register')
         .send({})
         .set('Accept', 'application/json');
@@ -94,7 +96,7 @@ describe('User function API testing', () => {
       done();
     });
     it('should return error msg with wrong passowrd input', async done => {
-      const res = await request(server)
+      const res = await request(BASE_URL)
         .post('/api/v1/users/register')
         .send({
           name: `${nanoid(5)}`,
@@ -109,7 +111,7 @@ describe('User function API testing', () => {
       done();
     });
     it('should return error msg with wrong passowrd input', async done => {
-      const res = await request(server)
+      const res = await request(BASE_URL)
         .post('/api/v1/users/register')
         .send({
           name: `${nanoid(5)}`,
@@ -124,7 +126,7 @@ describe('User function API testing', () => {
       done();
     });
     it('should return error msg with wrong passowrd input', async done => {
-      const res = await request(server)
+      const res = await request(BASE_URL)
         .post('/api/v1/users/register')
         .send({
           name: `${nanoid(5)}`,
@@ -139,7 +141,7 @@ describe('User function API testing', () => {
       done();
     });
     it('should return error msg with wrong passowrd input', async done => {
-      const res = await request(server)
+      const res = await request(BASE_URL)
         .post('/api/v1/users/register')
         .send({
           name: `${nanoid(5)}`,
@@ -157,7 +159,7 @@ describe('User function API testing', () => {
 
   describe('GET /logout', () => {
     it('should return err msg without token which cannot pass jwt', async done => {
-      const res = await request(server)
+      const res = await request(BASE_URL)
         .get('/api/v1/users/logout')
         .set('Accept', 'application/json');
       expect(res.status).toEqual(401);
