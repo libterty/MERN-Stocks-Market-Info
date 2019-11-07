@@ -5,15 +5,16 @@ const cors = require('cors');
 const methodOverride = require('method-override');
 const databaseConnect = require('./database');
 const connectRedis = require('./redis');
+const url = require('url');
 
 const app = express();
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 const port = process.env.PORT || 3002;
-const REDIS_URL =
-  process.env.REDISCLOUD_URL ||
-  'redis://127.0.0.1:6379';
+const REDIS_URL = url.parse(process.env.REDISCLOUD_URL);
+  // process.env.REDISCLOUD_URL ||
+  // 'redis://127.0.0.1:6379';
 
 databaseConnect();
 connectRedis(REDIS_URL);
