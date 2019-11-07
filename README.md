@@ -46,4 +46,7 @@ npm start
 ## A simple guide for setting redis locally
 https://medium.com/@petehouston/install-and-config-redis-on-mac-os-x-via-homebrew-eb8df9a4f298
 
+# Visited on Heroku
+https://pacific-badlands-21060.herokuapp.com
+
 
