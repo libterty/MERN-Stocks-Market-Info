@@ -1,25 +1,31 @@
 {
     "name": "stocksapi",
     "version": "1.0.0",
-    "description": "",
+    "description": "A single web page aplication which allows users to check stocks information",
     "main": "index.js",
     "scripts": {
         "start": "npm run seed & npm run build-client & node index.js",
         "dev": "npm run dev-client & npm run redis && cross-env ENV='development' nodemon index.js",
         "lint": "eslint --format table --fix .",
         "seed": "node models/seeds/index.js",
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest --maxWorkers=2 && codecov",
         "build-client": "npm run clean && parcel build client/src/index.html --out-dir client/dist",
         "dev-client": "npm run clean && parcel client/src/index.html --out-dir client/dist",
         "clean": "rm -rf .cache client/dist",
         "dev-server": "npm run redis && cross-env ENV='development' nodemon index.js",
         "redis": "redis-server --daemonize yes"
     },
+    "jest": {
+        "testEnvironment": "node",
+        "coverageDirectory": "./coverage/",
+        "collectCoverage": true
+    },
     "keywords": [],
-    "author": "",
+    "author": "11",
     "license": "ISC",
     "devDependencies": {
         "babel-eslint": "^10.0.3",
+        "codecov": "^3.6.1",
         "cross-env": "^6.0.3",
         "eslint": "^6.5.1",
         "eslint-config-airbnb": "^18.0.1",
@@ -30,7 +36,9 @@
         "eslint-plugin-prettier": "^3.1.1",
         "eslint-plugin-react": "^7.16.0",
         "husky": "^3.0.9",
+        "jest": "^24.9.0",
         "lint-staged": "^9.4.2",
+        "node-mocks-http": "^1.8.0",
         "nodemon": "^1.19.4",
         "prettier": "^1.18.2",
         "pretty-quick": "^2.0.0"
