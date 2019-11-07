@@ -1,5 +1,5 @@
 const prodConfig = {
-  database: 'mongodb://127.0.0.1/stocksapi',
+  database: process.env.MONGODB_URI || 'mongodb://127.0.0.1/stocksapi',
   secrets: {
     JWT_TOKEN: process.env.JWT_TOKEN
   }
