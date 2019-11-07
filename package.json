@@ -4,7 +4,7 @@
     "description": "A single web page aplication which allows users to check stocks information",
     "main": "index.js",
     "scripts": {
-        "start": "npm run seed & npm run build-client & node index.js",
+        "start": "npm run build-client & node index.js",
         "dev": "npm run dev-client & npm run redis && cross-env ENV='development' nodemon index.js",
         "lint": "eslint --format table --fix .",
         "seed": "node models/seeds/index.js",
