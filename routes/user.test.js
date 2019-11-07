@@ -22,8 +22,23 @@ describe('User function API testing', () => {
   describe('POST /signin', () => {
     it('should return token and json char', async done => {
       const res = await request(server)
+        .post('/api/v1/users/register')
+        .send({
+          name: 'example10',
+          email: 'example10@example.com',
+          password: '12345678',
+          confirmPassword: '12345678'
+        })
+        .set('Accept', 'application/json');
+      expect(res.status).toEqual(201);
+      expect(res.headers['x-access-token']).not.toBeUndefined();
+      expect(res.body.message).toEqual('Create Success');
+      done();
+    });
+    it('should return token and json char', async done => {
+      const res = await request(server)
         .post('/api/v1/users/signin')
-        .send({ email: 'example8@example.com', password: '12345678' })
+        .send({ email: 'example10@example.com', password: '12345678' })
         .set('Accept', 'application/json');
       expect(res.status).toEqual(200);
       expect(res.headers['x-access-token']).not.toBeUndefined();
