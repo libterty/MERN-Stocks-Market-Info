@@ -12,11 +12,15 @@ router.post('/signin', async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(404).send('Invalid password or email');
+      return res
+        .status(404)
+        .json({ type: 'fail', message: 'Invalid password or email' });
     }
     const password = await bcrypt.compare(req.body.password, user.password);
     if (!password) {
-      return res.status(400).send('Invalid password or email');
+      return res
+        .status(400)
+        .json({ type: 'fail', message: 'Invalid password or email' });
     }
     const token = await jwt.sign(
       {

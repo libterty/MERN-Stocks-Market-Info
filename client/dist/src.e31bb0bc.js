@@ -43972,7 +43972,63 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"react-router":"../../node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"../../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"../../node_modules/react/index.js","history":"../../node_modules/history/esm/history.js","prop-types":"../../node_modules/prop-types/index.js","tiny-warning":"../../node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"../../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"../../node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"../../node_modules/classnames/index.js":[function(require,module,exports) {
+},{"react-router":"../../node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"../../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"../../node_modules/react/index.js","history":"../../node_modules/history/esm/history.js","prop-types":"../../node_modules/prop-types/index.js","tiny-warning":"../../node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"../../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"../../node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"../../node_modules/@babel/runtime/helpers/arrayWithHoles.js":[function(require,module,exports) {
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+module.exports = _arrayWithHoles;
+},{}],"../../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":[function(require,module,exports) {
+function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+module.exports = _iterableToArrayLimit;
+},{}],"../../node_modules/@babel/runtime/helpers/nonIterableRest.js":[function(require,module,exports) {
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+module.exports = _nonIterableRest;
+},{}],"../../node_modules/@babel/runtime/helpers/slicedToArray.js":[function(require,module,exports) {
+var arrayWithHoles = require("./arrayWithHoles");
+
+var iterableToArrayLimit = require("./iterableToArrayLimit");
+
+var nonIterableRest = require("./nonIterableRest");
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+}
+
+module.exports = _slicedToArray;
+},{"./arrayWithHoles":"../../node_modules/@babel/runtime/helpers/arrayWithHoles.js","./iterableToArrayLimit":"../../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js","./nonIterableRest":"../../node_modules/@babel/runtime/helpers/nonIterableRest.js"}],"../../node_modules/classnames/index.js":[function(require,module,exports) {
 var define;
 /*!
   Copyright (c) 2017 Jed Watson.
@@ -57877,31 +57933,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactstrap = require("reactstrap");
 
 var _history = _interopRequireDefault(require("../history"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Logout() {
   var jwt = JSON.parse(localStorage.getItem('data'));
 
   var _useState = (0, _react.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       isLogout = _useState2[0],
       setIsLogout = _useState2[1];
 
@@ -57953,7 +58003,7 @@ function Logout() {
 
 var _default = Logout;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","../history":"history.js"}],"components/NavHeader.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","../history":"history.js"}],"components/NavHeader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57961,66 +58011,60 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactstrap = require("reactstrap");
 
 var _Logout = _interopRequireDefault(require("./Logout"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function NavHeader() {
   var inputRef = (0, _react.useRef)();
 
   var _useState = (0, _react.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       stocks = _useState2[0],
       setStocks = _useState2[1];
 
   var _useState3 = (0, _react.useState)(true),
-      _useState4 = _slicedToArray(_useState3, 2),
+      _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
       collapsed = _useState4[0],
       setCollapsed = _useState4[1];
 
   var _useState5 = (0, _react.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
+      _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
       name = _useState6[0],
       setName = _useState6[1];
 
   var _useState7 = (0, _react.useState)({}),
-      _useState8 = _slicedToArray(_useState7, 2),
+      _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
       update = _useState8[0],
       setUpdate = _useState8[1];
 
   var _useState9 = (0, _react.useState)(false),
-      _useState10 = _slicedToArray(_useState9, 2),
+      _useState10 = (0, _slicedToArray2.default)(_useState9, 2),
       isShow = _useState10[0],
       setIsShow = _useState10[1];
 
   var _useState11 = (0, _react.useState)(false),
-      _useState12 = _slicedToArray(_useState11, 2),
+      _useState12 = (0, _slicedToArray2.default)(_useState11, 2),
       isDelete = _useState12[0],
       setIsDelete = _useState12[1];
 
   var _useState13 = (0, _react.useState)(false),
-      _useState14 = _slicedToArray(_useState13, 2),
+      _useState14 = (0, _slicedToArray2.default)(_useState13, 2),
       isCreate = _useState14[0],
       setIsCreate = _useState14[1];
 
   var _useState15 = (0, _react.useState)(''),
-      _useState16 = _slicedToArray(_useState15, 2),
+      _useState16 = (0, _slicedToArray2.default)(_useState15, 2),
       eventId = _useState16[0],
       setEventId = _useState16[1];
 
@@ -58108,7 +58152,7 @@ function NavHeader() {
     action: "/api/v1/stocks/newStock",
     method: "POST"
   }, _react.default.createElement(_reactstrap.FormGroup, null, _react.default.createElement(_reactstrap.Label, {
-    "for": "stock"
+    for: "stock"
   }, _react.default.createElement("i", {
     className: "far fa-paper-plane"
   }, "\xA0Stock Code")), _react.default.createElement(_reactstrap.Input, {
@@ -58165,7 +58209,7 @@ function NavHeader() {
 
 var _default = NavHeader;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./Logout":"components/Logout.js"}],"components/Headline.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./Logout":"components/Logout.js"}],"components/Headline.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -58173,52 +58217,48 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
 var _react = _interopRequireWildcard(require("react"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Headline() {
   var _useState = (0, _react.useState)({}),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       spy = _useState2[0],
       setSpy = _useState2[1];
 
   var _useState3 = (0, _react.useState)({}),
-      _useState4 = _slicedToArray(_useState3, 2),
+      _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
       dia = _useState4[0],
       setDia = _useState4[1];
 
   var _useState5 = (0, _react.useState)({}),
-      _useState6 = _slicedToArray(_useState5, 2),
+      _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
       fbt = _useState6[0],
       setFbt = _useState6[1];
 
   (0, _react.useEffect)(function () {
-    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=SPY&apikey=".concat(undefined)).then(function (res) {
+    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=SPY&apikey=".concat("QYR46PG0LPZALS06")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setSpy(json['Global Quote']);
     });
   }, []);
   (0, _react.useEffect)(function () {
-    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=DIA&apikey=".concat(undefined)).then(function (res) {
+    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=DIA&apikey=".concat("QYR46PG0LPZALS06")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setDia(json['Global Quote']);
     });
   }, []);
   (0, _react.useEffect)(function () {
-    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=FBT&apikey=".concat(undefined)).then(function (res) {
+    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=FBT&apikey=".concat("QYR46PG0LPZALS06")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setFbt(json['Global Quote']);
@@ -58267,7 +58307,7 @@ function Headline() {
 
 var _default = Headline;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js"}],"../../node_modules/moment/moment.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../../node_modules/react/index.js"}],"../../node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 //! moment.js
@@ -77565,32 +77605,26 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _chart = _interopRequireDefault(require("chart.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function HomeHistory() {
   var _useState = (0, _react.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       history = _useState2[0],
       setHistory = _useState2[1];
 
   (0, _react.useEffect)(function () {
-    fetch("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=NDAQ&apikey=".concat(undefined, "&datatype=json")).then(function (res) {
+    fetch("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=NDAQ&apikey=".concat("QYR46PG0LPZALS06", "&datatype=json")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setHistory(json['Weekly Adjusted Time Series']);
@@ -77641,13 +77675,15 @@ function HomeHistory() {
 
 var _default = HomeHistory;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","chart.js":"../../node_modules/chart.js/dist/Chart.js"}],"components/HomeNews.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../../node_modules/react/index.js","chart.js":"../../node_modules/chart.js/dist/Chart.js"}],"components/HomeNews.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -77657,23 +77693,17 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function HomeNews() {
   var _useState = (0, _react.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       articles = _useState2[0],
       setArticles = _useState2[1];
 
   (0, _react.useEffect)(function () {
     var q = "".concat(new Date().getFullYear(), "-").concat(new Date().getMonth() + 1, "-").concat(new Date().getDate());
-    fetch("https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=".concat(undefined)).then(function (res) {
+    fetch("https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=".concat("0724b4680bed44d0a54b940c0c5f1e88")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setArticles(json.articles);
@@ -77698,13 +77728,15 @@ function HomeNews() {
 
 var _default = HomeNews;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js"}],"components/HomeStock.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js"}],"components/HomeStock.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -77714,28 +77746,20 @@ var _HomeHistory = _interopRequireDefault(require("./HomeHistory"));
 
 var _HomeNews = _interopRequireDefault(require("./HomeNews"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function HomeStock() {
   var _useState = (0, _react.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       item = _useState2[0],
       setItem = _useState2[1];
 
   (0, _react.useEffect)(function () {
-    fetch("https://api.worldtradingdata.com/api/v1/stock?symbol=NDAQ&api_token=".concat(undefined)).then(function (res) {
+    fetch("https://api.worldtradingdata.com/api/v1/stock?symbol=NDAQ&api_token=".concat("GtGyE3sXB7lFVgz1oXV8NLMMVUaF1KlzTPNCwMi2ISijITtJeArQEUCfoK92")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setItem(json.data);
@@ -77756,7 +77780,7 @@ function HomeStock() {
 
 var _default = HomeStock;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./HomeHistory":"components/HomeHistory.js","./HomeNews":"components/HomeNews.js"}],"components/App.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","./HomeHistory":"components/HomeHistory.js","./HomeNews":"components/HomeNews.js"}],"components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77790,33 +77814,27 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _chart = _interopRequireDefault(require("chart.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function StockItemHistory() {
   var _useState = (0, _react.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       history = _useState2[0],
       setHistory = _useState2[1];
 
   (0, _react.useEffect)(function () {
     var indexSymbol = document.location.pathname.replace(/\/stocks\//, '');
-    fetch("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=".concat(indexSymbol, "&apikey=").concat(undefined, "&datatype=json")).then(function (res) {
+    fetch("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=".concat(indexSymbol, "&apikey=").concat("QYR46PG0LPZALS06", "&datatype=json")).then(function (res) {
       return res.json();
     }).then(function (json) {
       return setHistory(json['Weekly Adjusted Time Series']);
@@ -77865,7 +77883,7 @@ function StockItemHistory() {
 
 var _default = StockItemHistory;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","chart.js":"../../node_modules/chart.js/dist/Chart.js"}],"components/StockItem.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../../node_modules/react/index.js","chart.js":"../../node_modules/chart.js/dist/Chart.js"}],"components/StockItem.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -77897,44 +77915,38 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactstrap = require("reactstrap");
 
 var _history = _interopRequireDefault(require("../history"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Login() {
   var _useState = (0, _react.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       isLogin = _useState2[0],
       setIsLogin = _useState2[1];
 
   var _useState3 = (0, _react.useState)(''),
-      _useState4 = _slicedToArray(_useState3, 2),
+      _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
       email = _useState4[0],
       setEmail = _useState4[1];
 
   var _useState5 = (0, _react.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
+      _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
       password = _useState6[0],
       setPassword = _useState6[1];
 
   var _useState7 = (0, _react.useState)(false),
-      _useState8 = _slicedToArray(_useState7, 2),
+      _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
       data = _useState8[0],
       setData = _useState8[1];
 
@@ -78023,7 +78035,7 @@ function Login() {
 
 var _default = Login;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","../history":"history.js"}],"components/Register.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","../history":"history.js"}],"components/Register.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -78031,54 +78043,48 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactstrap = require("reactstrap");
 
 var _history = _interopRequireDefault(require("../history"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Register() {
   var _useState = (0, _react.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       isRegister = _useState2[0],
       setIsRegister = _useState2[1];
 
   var _useState3 = (0, _react.useState)(''),
-      _useState4 = _slicedToArray(_useState3, 2),
+      _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
       name = _useState4[0],
       setName = _useState4[1];
 
   var _useState5 = (0, _react.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
+      _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
       email = _useState6[0],
       setEmail = _useState6[1];
 
   var _useState7 = (0, _react.useState)(''),
-      _useState8 = _slicedToArray(_useState7, 2),
+      _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
       password = _useState8[0],
       setPassword = _useState8[1];
 
   var _useState9 = (0, _react.useState)(''),
-      _useState10 = _slicedToArray(_useState9, 2),
+      _useState10 = (0, _slicedToArray2.default)(_useState9, 2),
       confirmPassword = _useState10[0],
       setConfirmPassword = _useState10[1];
 
   var _useState11 = (0, _react.useState)(false),
-      _useState12 = _slicedToArray(_useState11, 2),
+      _useState12 = (0, _slicedToArray2.default)(_useState11, 2),
       data = _useState12[0],
       setData = _useState12[1];
 
@@ -78187,7 +78193,7 @@ function Register() {
 
 var _default = Register;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","../history":"history.js"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../../node_modules/react/index.js","reactstrap":"../../node_modules/reactstrap/es/index.js","../history":"history.js"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -78337,7 +78343,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58054" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62264" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

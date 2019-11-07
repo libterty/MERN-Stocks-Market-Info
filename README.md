@@ -5,6 +5,9 @@
   <img src="https://img.shields.io/docker/cloud/build/libterty8186/stocksapi" alt="Docker Cloud Build Status" style="padding-left:0.25rem;max-height:18px;">
 </div>
 
+[![CircleCI](https://circleci.com/gh/libterty/Stocks-Market-Infomation-with-Chart/tree/master.svg?style=shield)](https://circleci.com/gh/libterty/Stocks-Market-Infomation-with-Chart/tree/master)
+[![codecov](https://codecov.io/gh/libterty/Stocks-Market-Infomation-with-Chart/branch/master/graph/badge.svg)](https://codecov.io/gh/libterty/Stocks-Market-Infomation-with-Chart)
+
 - Full stack MERN design
 - User can go to each Index page
 - User can observe every important index in Home page
