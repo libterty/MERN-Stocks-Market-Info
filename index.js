@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const port = process.env.PORT || 3002;
 const REDIS_URL =
-  'redis://h:pba90327a680b301f1819d4765f1a5435d521964339bdb514490d5767f4de9671@ec2-34-199-192-253.compute-1.amazonaws.com:16199' ||
+  process.env.REDIS_URL ||
   'redis://127.0.0.1:6379';
 
 databaseConnect();
