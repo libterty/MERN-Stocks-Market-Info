@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const Redis = require('redis').createClient();
+const Redis = require('redis').createClient(process.env.REDIS_URL);
 
 const authorization = async (req, res, next) => {
   const token = await req.header('x-access-token');

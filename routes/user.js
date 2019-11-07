@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Redis = require('redis').createClient();
+const Redis = require('redis').createClient(process.env.REDIS_URL);
 const authorization = require('../middlewares/jwt');
 const User = require('../models/user');
 
