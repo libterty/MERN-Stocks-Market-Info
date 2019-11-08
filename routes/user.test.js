@@ -1,23 +1,23 @@
 /* eslint-disable no-undef */
 const request = require('supertest');
 const nanoid = require('nanoid');
-// const Redis = require('redis').createClient();
+// const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
+// const Redis = require('redis').createClient(REDIS_URL);
 // const server = require('../index');
-
 const BASE_URL = 'http://localhost:3002';
 
-// async function shutdown() {
-//   await new Promise(resolve => {
-//     Redis.end(() => {
-//       resolve();
-//     });
-//   });
-//   await new Promise(resolve => setImmediate(resolve));
-// }
+const shutdown = async () => {
+  await new Promise(resolve => {
+    Redis.end(() => {
+      resolve();
+    });
+  });
+  await new Promise(resolve => setImmediate(resolve));
+}
 
 describe('User function API testing', () => {
   // afterEach(async () => {
-  //   await server.close();
+  //   // await server.close();
   //   shutdown();
   // });
 

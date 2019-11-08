@@ -3,7 +3,9 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Redis = require('redis').createClient(process.env.REDIS_URL);
+
+const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
+const Redis = require('redis').createClient(REDIS_URL);
 const authorization = require('../middlewares/jwt');
 const User = require('../models/user');
 
