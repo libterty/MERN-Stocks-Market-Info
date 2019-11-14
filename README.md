@@ -20,7 +20,7 @@
 - Users can register and login and logut
 
 - Home Page
-![image](https://github.com/libterty/Stocks-Market-Infomation-with-Chart/blob/master/client/src/assets/Home.png)
+![image](https://github.com/libterty/MERN-Stocks-Market-Info/blob/master/client/src/assets/Home.png)
 
 ## Environment Requirements
 - Node
@@ -30,7 +30,7 @@
 
 ## Project setup
 ```bash
-git clone https://github.com/libterty/Stocks-Market-Infomation-with-Chart.git
+git clone https://github.com/libterty/MERN-Stocks-Market-Info.git
 ```
 
 To initialize the project, type following to install
